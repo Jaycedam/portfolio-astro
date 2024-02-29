@@ -74,6 +74,10 @@
     @apply bg-background text-foreground;
   }
 
+  section {
+    @apply scroll-mt-16;
+  }
+
   .title {
     @apply text-5xl font-black;
   }
@@ -85,4 +89,13 @@
   .subheading {
     @apply font-light text-muted-foreground;
   }
+}
+
+/* fix view transition api overlap */
+::view-transition-group(navbar) {
+  z-index: 50;
+}
+
+::view-transition-group(nav-bg) {
+  z-index: 60;
 }
