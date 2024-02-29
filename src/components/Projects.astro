@@ -27,11 +27,13 @@ const projects = (
   <ul class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
     {
       projects.map((item) => (
-        <li class="w-full relative aspect-square overflow-hidden rounded-3xl group">
+        <li class="bg-muted w-full relative aspect-square overflow-hidden rounded-3xl group">
+          <div class="animate-fade text-zinc-50 absolute bottom-0 w-full z-10 p-8 bg-gradient-to-t from-black/80 text-end">
+            <h2 class="font-bold text-lg">{item.data.title}</h2>
+            <p class="text-sm font-light">{item.data.area}</p>
+          </div>
+
           <a href={`projects/${item.slug}`}>
-            <h2 class="font-bold animate-fade absolute bottom-4 right-4 z-10 px-4 py-2 bg-background/50 backdrop-blur rounded-3xl">
-              {item.data.title} - {item.data.area}
-            </h2>
             <Image
               src={item.data.image}
               alt=""
