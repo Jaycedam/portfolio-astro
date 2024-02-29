@@ -1,10 +1,11 @@
 ---
 import { Moon } from "lucide-react";
+import { Button } from "@components/ui/button";
 ---
 
-<button id="themeToggle">
-  <Moon />
-</button>
+<Button id="themeToggle" variant="ghost" size="icon">
+  <Moon className="h-5 w-5" />
+</Button>
 
 <script>
   document.addEventListener("astro:page-load", () => {
