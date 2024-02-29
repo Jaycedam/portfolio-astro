@@ -1,5 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import BlogPosts from "@components/BlogPosts.astro";
 ---
 
-<Layout title="Blog | JC Portfolio" />
+<Layout title="Blog">
+  <BlogPosts homepage={false} title="Blog" />
+</Layout>

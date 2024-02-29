@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+import MDXLayout from "@layouts/MDXLayout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const mdx = await getCollection("blog");
+  const paths = mdx.map((item) => ({
+    params: { slug: item.slug },
+    props: item,
+  }));
+
+  return paths;
+}
+type Props = CollectionEntry<"blog">;
+
+const mdx = Astro.props;
+const { Content } = await mdx.render();
+---
+
+<Layout title={mdx.data.title}>
+  <MDXLayout href="/blog" label="All posts" />
+  <section class="container space-y-16">
+    <div class="max-w-6xl mx-auto space-y-16">
+      <div class="space-y-4">
+        <h1 class="title" transition:name={"blog-title-" + mdx.slug}>
+          {mdx.data.title}: {mdx.data.description}
+        </h1>
+
+        <p class="subheading" transition:name={"blog-date-" + mdx.slug}>
+          {
+            mdx.data.date.toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })
+          }
+        </p>
+      </div>
+    </div>
+
+    <article
+      class="prose prose-h2:heading prose-zinc mx-auto dark:prose-invert"
+    >
+      <Content />
+    </article>
+  </section>
+</Layout>

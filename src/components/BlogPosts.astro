@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import { buttonVariants } from "./ui/button";
+import { ChevronRight } from "lucide-react";
+
+const { homepage, title } = Astro.props;
+
+type Props = { homepage: boolean; title: string };
+
+let mdx = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+if (homepage) {
+  mdx = mdx.slice(0, 2);
+}
+---
+
+<section id="blog" class="container space-y-8">
+  <h1 class={homepage ? "heading" : "title"} transition:name="blog-title">
+    {title}
+  </h1>
+  <ul class="md:grid-cols-2 grid gap-4">
+    {
+      mdx.map((mdx) => (
+        <li>
+          <a
+            href={`blog/${mdx.slug}`}
+            transition:name={"blog-card-" + mdx.slug}
+          >
+            <div class="border bg-gradient-to-tr from-muted/20 from-10% rounded-3xl w-full p-8">
+              <h2
+                class="text-xl font-bold"
+                transition:name={"blog-title-" + mdx.slug}
+              >
+                {mdx.data.title}
+              </h2>
+              <p transition:name={"blog-date-" + mdx.slug}>
+                {mdx.data.date.toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
+              <p>{mdx.data.description}</p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    homepage && (
+      <div class="grid justify-end">
+        <a href="/blog" class={buttonVariants({ variant: "outline" })}>
+          All posts
+          <ChevronRight className="h-4" />
+        </a>
+      </div>
+    )
+  }
+</section>
