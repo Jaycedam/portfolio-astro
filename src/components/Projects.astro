@@ -21,7 +21,7 @@ const projects = (
 ---
 
 <section id="projects" class="container space-y-8">
-  <h1 class={homepage ? "heading" : "title"} transition:name="projects-title">
+  <h1 class={homepage ? "heading" : "title"}>
     {title}
   </h1>
   <ul class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
@@ -29,10 +29,7 @@ const projects = (
       projects.map((item) => (
         <li class="w-full relative aspect-square overflow-hidden rounded-3xl group">
           <a href={`projects/${item.slug}`}>
-            <h2
-              class="font-bold absolute bottom-4 right-4 z-10 px-4 py-2 bg-background/50 backdrop-blur rounded-3xl"
-              transition:name={"title-" + item.data.title}
-            >
+            <h2 class="font-bold absolute bottom-4 right-4 z-10 px-4 py-2 bg-background/50 backdrop-blur rounded-3xl">
               {item.data.title} - {item.data.area}
             </h2>
             <Image
