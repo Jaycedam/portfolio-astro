@@ -1,6 +1,7 @@
 ---
 import type { Navlinks } from "@/utils/types";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import HeaderLink from "@/components/HeaderLink.astro";
 
 const navLinks: Navlinks[] = [
   {
@@ -20,6 +21,7 @@ const navLinks: Navlinks[] = [
 
 <header
   class="shadow bg-background/60 backdrop-blur items-center max-w-full justify-between flex gap-4 px-8 h-14 border-b"
+  transition:animate="none"
 >
   <nav>
     <ul class="flex items-center gap-4">
@@ -60,9 +62,9 @@ const navLinks: Navlinks[] = [
         </a>
       </li>
       {
-        navLinks.map((link, idx) => (
+        navLinks.map((link) => (
           <li>
-            <a href={link.href}>{link.label}</a>
+            <HeaderLink href={link.href}>{link.label}</HeaderLink>
           </li>
         ))
       }
@@ -72,7 +74,7 @@ const navLinks: Navlinks[] = [
   <nav>
     <ul class="flex gap-4">
       <li>
-        <ThemeToggle client:load />
+        <ThemeToggle />
       </li>
     </ul>
   </nav>
