@@ -3,10 +3,6 @@ import { Moon } from "lucide-react";
 import { Button } from "@components/ui/button";
 ---
 
-<Button id="themeToggle" variant="ghost" size="icon">
-  <Moon className="h-5 w-5" />
-</Button>
-
 <script>
   document.addEventListener("astro:page-load", () => {
     const theme = (() => {
@@ -14,7 +10,7 @@ import { Button } from "@components/ui/button";
         typeof localStorage !== "undefined" &&
         localStorage.getItem("theme")
       ) {
-        return localStorage.getItem("theme");
+        return localStorage.getItem("theme") as string;
       }
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         return "dark";
@@ -38,9 +34,11 @@ import { Button } from "@components/ui/button";
       localStorage.setItem("theme", isDark ? "dark" : "light");
     };
 
-    document
-      .getElementById("themeToggle")
-      .addEventListener("click", handleToggleClick);
+    const toggle = document.getElementById("themeToggle");
+
+    if (toggle) {
+      toggle.addEventListener("click", handleToggleClick);
+    }
   });
 </script>
 
@@ -51,3 +49,7 @@ import { Button } from "@components/ui/button";
       : document.documentElement.classList.add("light");
   });
 </script>
+
+<Button id="themeToggle" variant="ghost" size="icon">
+  <Moon className="h-5 w-5" />
+</Button>
