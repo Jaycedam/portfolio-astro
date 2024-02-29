@@ -40,10 +40,8 @@ import { Button } from "@components/ui/button";
       toggle.addEventListener("click", handleToggleClick);
     }
   });
-</script>
 
-<script>
-  document.addEventListener("astro:after-swap", () => {
+  document.addEventListener("astro:before-load", () => {
     localStorage.theme === "dark"
       ? document.documentElement.classList.add("dark")
       : document.documentElement.classList.add("light");
