@@ -1,0 +1,17 @@
+---
+type Props = { href: string; label: string };
+const { href, label } = Astro.props;
+import { MoveLeft } from "lucide-react";
+---
+
+<div class="container">
+  <a
+    class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
+    href={href}
+  >
+    <MoveLeft />
+    {" "}
+    {label}
+  </a>
+</div>
+<slot />
