@@ -27,6 +27,7 @@ export const blogCollection = defineCollection({
       date: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       tags: z.string().array(),
+      image: image().optional(),
     }),
 });
 
