@@ -18,21 +18,23 @@ const projects = (
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<section class="container space-y-8">
+<section id="projects" class="container space-y-8">
   <h1 class={featured ? "heading" : "title"}>My Projects</h1>
   <ul class={`${featured ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
     {
       projects.map((item) => (
-        <li class="aspect-square relative group w-full h-full rounded-3xl overflow-hidden">
+        <li class="w-full relative aspect-square overflow-hidden rounded-3xl group">
           <a href={`projects/${item.slug}`}>
-            <div class="rounded-3xl absolute bottom-4 right-4 z-10 px-4 py-2 bg-background/50 backdrop-blur ">
-              <p class="font-bold">{item.data.title}</p>
-            </div>
-
+            <h2
+              class="font-bold absolute bottom-4 right-4 z-10 px-4 py-2 bg-background/50 backdrop-blur rounded-3xl"
+              transition:name={"title-" + item.data.title}
+            >
+              {item.data.title} - {item.data.area}
+            </h2>
             <Image
               src={item.data.image}
               alt=""
-              class="object-cover h-full w-full rounded-3xl"
+              class="object-cover rounded-3xl h-full w-full group-hover:scale-110 transition-all duration-500"
               transition:name={item.slug}
               format="avif"
             />
