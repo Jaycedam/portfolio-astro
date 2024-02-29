@@ -19,7 +19,7 @@ const project = Astro.props;
 const { Content } = await project.render();
 ---
 
-<Layout title={project.data.title + " | JC Portfolio"}>
+<Layout title={project.data.title}>
   <MDXLayout href="/projects" label="All Projects" />
   <section class="container space-y-16">
     <div class="max-w-6xl mx-auto space-y-16">

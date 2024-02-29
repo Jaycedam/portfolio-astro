@@ -1,15 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { buttonVariants } from "./ui/button";
+import { ChevronRight } from "lucide-react";
 
-const { featured } = Astro.props;
+const { homepage, title } = Astro.props;
 
-type Props = { featured: boolean };
+type Props = { homepage: boolean; title: string };
 
 const projects = (
   await getCollection("projects", ({ data }) => {
     // if the featured prop is true, then filter the collection
-    if (featured) {
+    if (homepage) {
       return data.featured === true;
     }
     // else just return the full collection
@@ -19,8 +21,10 @@ const projects = (
 ---
 
 <section id="projects" class="container space-y-8">
-  <h1 class={featured ? "heading" : "title"}>My Projects</h1>
-  <ul class={`${featured ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
+  <h1 class={homepage ? "heading" : "title"} transition:name="projects-title">
+    {title}
+  </h1>
+  <ul class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
     {
       projects.map((item) => (
         <li class="w-full relative aspect-square overflow-hidden rounded-3xl group">
@@ -43,4 +47,15 @@ const projects = (
       ))
     }
   </ul>
+
+  {
+    homepage && (
+      <div class="grid justify-end">
+        <a href="/projects" class={buttonVariants({ variant: "outline" })}>
+          All projects
+          <ChevronRight className="h-4" />
+        </a>
+      </div>
+    )
+  }
 </section>
