@@ -1,0 +1,29 @@
+---
+title: "Portfolio V2"
+area: "Website"
+description: "Página web personal creada con Next.js App Router"
+date: "2023-04"
+featured: true
+tags: ["React", "Next.js", "Typescript", "Prisma"]
+image: "./images/portfolio-v2/preview.webp"
+---
+
+## Características Principales
+
+### MDX
+
+El listado de proyectos y blog posts, es obtenido de un repositorio remoto a través de GitHub API.
+
+### Modals
+
+Al presionar en un proyecto o blog post, se abre un modal utilizando [Intercepting Routes](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes) con [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) para mostrar el contenido sobre la página actual.
+
+### Admin
+
+Ruta especial de Administrador junto a todas las subrutas están protegida con credenciales, guardadas en la base de datos. La contraseña ha sido cifrada utilizando bcrypt.
+
+La tabla permite filtrar y ordenar, con botones de editar y eliminar la columna, con un botón de crear al inicio. Todas las acciones usan Server Actions.
+
+Los forms utilizan react-hook-form y Zod para la validación en frontend y backend.
+
+## Links
