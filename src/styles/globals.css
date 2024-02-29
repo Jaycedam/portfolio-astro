@@ -95,7 +95,12 @@
 ::view-transition-group(navbar) {
   z-index: 50;
 }
-
 ::view-transition-group(nav-bg) {
   z-index: 60;
+}
+::view-transition-group(projects-title) {
+  z-index: 40;
+}
+::view-transition-group(blog-title) {
+  z-index: 40;
 }
