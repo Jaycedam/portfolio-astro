@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
+import MDXLayout from "@layouts/MDXLayout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -19,8 +20,9 @@ const { Content } = await project.render();
 ---
 
 <Layout title={project.data.title + " | JC Portfolio"}>
-  <section class="space-y-16">
-    <div class="container max-w-6xl space-y-16">
+  <MDXLayout href="/projects" label="All Projects" />
+  <section class="container space-y-16">
+    <div class="max-w-6xl mx-auto space-y-16">
       <div class="space-y-4">
         <h1 class="title">
           {project.data.title}: {project.data.description}
@@ -44,7 +46,9 @@ const { Content } = await project.render();
       />
     </div>
 
-    <article class="prose prose-zinc mx-auto dark:prose-invert">
+    <article
+      class="prose prose-h2:heading prose-zinc mx-auto dark:prose-invert"
+    >
       <Content />
     </article>
   </section>

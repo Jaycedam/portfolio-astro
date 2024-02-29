@@ -20,18 +20,18 @@ const navLinks: Navlinks[] = [
 ---
 
 <header
-  class="shadow bg-background/60 backdrop-blur items-center max-w-full justify-between flex gap-4 px-8 h-14 border-b"
+  class="shadow sticky top-1 w-fit mx-auto rounded-3xl bg-background/60 backdrop-blur items-center max-w-full justify-between flex gap-4 px-8 h-14 border z-50"
   transition:animate="none"
 >
   <nav>
-    <ul class="flex items-center gap-8">
+    <ul class="flex items-center gap-4 md:gap-8">
       <li>
         <a href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xml:space="preserve"
             viewBox="0 0 180 180"
-            class="h-8 w-8"
+            class="h-6 w-6 md:h-8 md:w-8"
           >
             <g class="text fill-foreground">
               <path
@@ -71,8 +71,11 @@ const navLinks: Navlinks[] = [
     </ul>
   </nav>
 
+  <!-- separator  -->
+  <div class="hidden md:block border-l h-2/4"></div>
+
   <nav>
-    <ul class="flex gap-4">
+    <ul class="flex gap-4 items-center">
       <li>
         <ThemeToggle />
       </li>
