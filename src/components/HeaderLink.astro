@@ -1,19 +1,30 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-
 type Props = HTMLAttributes<"a">;
 
-const { href, class: className, ...props } = Astro.props;
+const { href, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === "/" + subpath?.[0];
 ---
 
-<a
-  href={href}
-  class={`inline-block  ${isActive ? "font-bold text-foreground" : "text-muted-foreground"} ${className}`}
-  {...props}
->
-  <slot />
-</a>
+<div class="relative isolate items-center grid">
+  <a
+    href={href}
+    class={`px-4 py-2 text-sm font-bold  ${isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+    {...props}
+  >
+    <slot />
+  </a>
+
+  {
+    // ERROR: bg for link is behind the nav when animating, ignoring the z index
+    isActive && (
+      <div
+        transition:name="nav-bg"
+        class="absolute inset-0 -z-10 rounded-3xl bg-primary"
+      />
+    )
+  }
+</div>
