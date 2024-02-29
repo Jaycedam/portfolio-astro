@@ -9,10 +9,10 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === "/" + subpath?.[0];
 ---
 
-<div class="relative isolate items-center grid">
+<div class="relative grid isolate items-center h-14">
   <a
     href={href}
-    class={`px-4 py-2 text-sm font-bold  ${isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+    class={`text-sm font-bold  ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
     {...props}
   >
     <slot />
@@ -23,7 +23,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
     isActive && (
       <div
         transition:name="nav-bg"
-        class="absolute inset-0 -z-10 rounded-3xl bg-primary"
+        class="absolute bottom-0 -z-10 h-1 w-full rounded-3xl bg-primary"
       />
     )
   }
