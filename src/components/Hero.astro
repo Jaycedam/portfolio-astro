@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import hero from "@/components/assets/profile.webp";
+import { buttonVariants } from "./ui/button";
+import { Code, MailPlus } from "lucide-react";
+---
+
+<section>
+  <div class="container flex flex-col items-center gap-4">
+    <div class="container flex flex-col items-center justify-center gap-8">
+      {/* graphic for hero  */}
+      <div class="relative">
+        <p
+          class="absolute -right-16 -top-4 z-10 whitespace-nowrap rounded-3xl bg-foreground/10 p-4 font-black text-foreground shadow backdrop-blur"
+        >
+          {"// Hello, World."}
+        </p>
+
+        <Image
+          alt=""
+          width={200}
+          height={200}
+          src={hero}
+          class="rounded-full"
+        />
+      </div>
+
+      <div class="space-y-8 text-center">
+        <div class="space-y-2">
+          <h1
+            class="text-5xl font-black tracking-tight md:text-7xl lg:text-8xl"
+          >
+            Jordan Cortés,
+            <br />
+            Software{" "}
+            <strong
+              class="animate-gradient bg-gradient-to-r from-orange-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent"
+            >
+              Dev.
+            </strong>
+          </h1>
+
+          <h2 class="prose text-xl text-muted-foreground">
+            Actualmente enfocado en full stack Next.js (React) con Typescript.
+          </h2>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <a
+          class={buttonVariants({ variant: "default", size: "lg" })}
+          href="/#projects"
+        >
+          <Code className="h-5" /> &nbsp; Projects
+        </a>
+
+        <a
+          class={buttonVariants({ variant: "outline", size: "lg" })}
+          href="/#contact"
+        >
+          <MailPlus className="h-5" /> &nbsp; Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
