@@ -30,8 +30,22 @@ export const blogCollection = defineCollection({
       image: image().optional(),
     }),
 });
+export const carreerCollection = defineCollection({
+  type: "content",
+  // Type-check frontmatter using a schema
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      company: z.string(),
+      type: z.string(),
+      // Transform string to Date object
+      start: z.coerce.date(),
+      end: z.coerce.date().optional(),
+    }),
+});
 
 export const collections = {
   projects: projectsCollection,
   blog: blogCollection,
+  carreer: carreerCollection,
 };
