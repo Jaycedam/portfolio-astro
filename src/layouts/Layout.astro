@@ -21,7 +21,7 @@ import { ViewTransitions } from "astro:transitions";
   </head>
   <body>
     <Navbar />
-    <ViewTransitions />
+    <ViewTransitions fallback="swap" />
 
     <main class="space-y-16 py-8">
       <slot />
