@@ -21,34 +21,35 @@ const projects = (
 ---
 
 <section id="projects" class="container space-y-8">
-  <h1 class={homepage ? "heading" : "title"}>
+  <h1 class={homepage ? "heading" : "title"} transition:name="projects-title">
     {title}
   </h1>
-  <ul class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
+  <div class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
     {
       projects.map((item) => (
-        <li class="bg-muted w-full relative aspect-square overflow-hidden rounded-3xl group">
+        <a
+          class="w-full hover:scale-[102%] duration-500 transition-all relative aspect-square overflow-hidden rounded-3xl group"
+          href={`projects/${item.slug}`}
+        >
           <div class="animate-fade text-zinc-50 absolute bottom-0 w-full z-10 p-8 bg-gradient-to-t from-black/80 text-end">
             <h2 class="font-bold text-lg">{item.data.title}</h2>
             <p class="text-sm font-light">{item.data.area}</p>
           </div>
 
-          <a href={`projects/${item.slug}`}>
-            <Image
-              src={item.data.image}
-              alt=""
-              class="object-cover rounded-3xl h-full w-full group-hover:scale-110 transition-all duration-500"
-              transition:name={item.slug}
-              format="avif"
-              widths={[360, 720, 1000, item.data.image.width]}
-              sizes={`(max-width: 360px) 360px, (max-width: 720px) 720px, (max-width: 1600px) 1000px, ${item.data.image.width}px`}
-            />
-            <span class="sr-only">Project details</span>
-          </a>
-        </li>
+          <Image
+            src={item.data.image}
+            alt=""
+            class="object-cover rounded-3xl h-full w-full group-hover:scale-105 transition-all duration-500"
+            transition:name={item.slug}
+            format="avif"
+            widths={[360, 720, 1000, item.data.image.width]}
+            sizes={`(max-width: 360px) 360px, (max-width: 720px) 720px, (max-width: 1600px) 1000px, ${item.data.image.width}px`}
+          />
+          <span class="sr-only">Project details</span>
+        </a>
       ))
     }
-  </ul>
+  </div>
 
   {
     homepage && (
