@@ -45,6 +45,8 @@ const { Content } = await project.render();
         transition:name={project.slug}
         format="avif"
         loading="eager"
+        widths={[360, 720, 1000, project.data.image.width]}
+        sizes={`(max-width: 360px) 360px, (max-width: 720px) 720px, (max-width: 1600px) 1000px, ${project.data.image.width}px`}
       />
     </div>
 
