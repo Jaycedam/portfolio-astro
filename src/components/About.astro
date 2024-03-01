@@ -1,0 +1,82 @@
+---
+import { buttonVariants } from "@components/ui/button";
+import { badgeVariants } from "@components/ui/badge";
+
+const items1: string[] = [
+  "Next.js",
+  "React",
+  "Typescript",
+  "TailwindCSS",
+  "SQL",
+  "Prisma",
+  "Python",
+  "Django",
+  "Framer Motion",
+  "Zod",
+  "React Hook Form",
+];
+
+const items2: string[] = [
+  "C#",
+  "Java",
+  "Spring Boot",
+  "PL/SQL",
+  "Bootstrap",
+  "SASS",
+];
+---
+
+<section class="container grid gap-8 lg:grid-cols-[1fr_65ch_1fr]" id="about">
+  <h2 class="heading lg:justify-self-end">About me</h2>
+
+  <div class="mx-auto space-y-8">
+    <p class="prose text-muted-foreground">Lorem, ipsum.</p>
+
+    <a href="#" target="_blank" class={buttonVariants({ variant: "default" })}>
+      Resume
+    </a>
+
+    {/* knoledge section  */}
+    <div class="space-y-8">
+      <div class="space-y-2">
+        <p class="font-bold">lorem</p>
+        <div class="flex flex-wrap gap-4">
+          {
+            items1.map((item) => (
+              <p
+                class={`motion-safe:fade-up ${badgeVariants({
+                  variant: "outline",
+                })}`}
+              >
+                {item}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <p class="font-bold">lorem</p>
+        <div class="flex flex-wrap gap-4">
+          {
+            items2.map((item) => (
+              <p
+                class={`motion-safe:fade-up ${badgeVariants({
+                  variant: "outline",
+                })}`}
+              >
+                {item}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <p class="prose font-light italic text-muted-foreground">
+      Lorem ipsum dolor sit amet.
+    </p>
+  </div>
+</section>
