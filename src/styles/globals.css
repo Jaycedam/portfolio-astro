@@ -89,6 +89,13 @@
   .subheading {
     @apply font-light text-muted-foreground;
   }
+
+  .fade-left {
+    @apply animate-fade-left [animation-range:cover_5%_cover_40%] [animation-timeline:view()];
+  }
+  .scale-up {
+    @apply animate-scale-up [animation-range:cover_5%_cover_40%] [animation-timeline:view()];
+  }
 }
 
 /* fix view transition api overlap */

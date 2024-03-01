@@ -72,8 +72,16 @@ export default {
           },
         },
         fade: {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "fade-left": {
+          from: { transform: "translateX(30px)", opacity: "0" },
+          to: { transform: "translateX(0)", opacity: "1" },
+        },
+        "scale-up": {
+          from: { opacity: "0", scale: "0.5" },
+          to: { opacity: "1", scale: "1" },
         },
       },
       animation: {
@@ -81,6 +89,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         gradient: "gradient 5s infinite",
         fade: "fade .5s ease-in",
+        "fade-left": "fade-left linear both",
+        "scale-up": "scale-up linear both",
       },
     },
   },
