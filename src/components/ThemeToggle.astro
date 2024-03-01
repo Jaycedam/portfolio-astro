@@ -1,5 +1,5 @@
 ---
-import { Moon } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { Button } from "@components/ui/button";
 ---
 
@@ -49,5 +49,12 @@ import { Button } from "@components/ui/button";
 </script>
 
 <Button id="themeToggle" variant="ghost" size="icon">
-  <Moon className="h-5 w-5" />
+  <div class="relative">
+    <Moon
+      className="h-5 rotate-90 dark:rotate-0 duration-300 ease-out transition-all w-5 opacity-0 dark:opacity-100"
+    />
+    <Sun
+      className="h-5 w-5 absolute inset-0 duration-300 ease-out dark:rotate-90 rotate-0 transition-all dark:opacity-0"
+    />
+  </div>
 </Button>
