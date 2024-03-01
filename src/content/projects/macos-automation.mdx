@@ -1,48 +1,50 @@
 ---
 title: "macOS Automation"
 area: "CLI"
-description: "Scripts para automatizar dev environment"
+description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
 featured: false
 tags: ["Bash"]
 image: "./images/macos-automation/preview.webp"
 ---
 
-## Características
+import { ExternalLink } from "lucide-react";
+import { buttonVariants } from "@components/ui/button";
 
-1. Instala Homebrew.
-2. Restaura la copia de seguridad actual:
-   - Archivos de configuración (.config, .zprofile, .zshrc).
-   - Paquetes instalados por Homebrew mediante un Brewfile.
-3. Modifica algunas preferencias predeterminadas de macOS:
-   - Dock: desactiva ocultar automaticamente, recientes desactivados.
-   - Finder: Mostrar extensiones de archivo, mostrar archivos ocultos, mostrar barra de ruta, vista de lista por defecto, mantener carpetas en la parte superior, alcance de búsqueda a la carpeta actual.
-   - Espacios: Desactivar reorganización automática de Espacios, agrupar por aplicación en Mission Control.
-   - Seguridad: Habilita el firewall.
+## Features
 
-También posee un script para realizar un backup, el cual actualiza los archivos mencionados en el punto 2.
+1. Installs Homebrew
+2. Restores current backup:
+   - Dotfiles (.config, .zprofile, .zshrc).
+   - Installs Homebrew packages using a Brewfile.
+3. Modifies default macOS preferences:
+   - Dock: Hide automatically, recent apps disabled.
+   - Finder: Show file extensions, hidden files, path bar, set List View as default, keep folders on top, and search on the current folder.
+   - Spaces: Automatically rearrange Spaces disabled, group by app on Mission Control.
+   - Security: Enable firewall.
 
-## Cómo usar
+## How to use
 
-Para restaurar configuración y backup existente en el repositorio
+Main:
 
 ```bash
 git clone https://github.com/Jaycedam/mac-setup.git && cd mac-setup && bash main.sh
 ```
 
-Para actualizar backup
+Update local backup;
 
 ```bash
 cd path-to-project
 bash backup.sh
 ```
 
-Después de realizar un nuevo backup
-
-```bash
-git add .
-git commit -m "chore: backup updated"
-git push origin main
-```
-
 ## Links
+
+<a
+  className={`no-underline ${buttonVariants({ variant: "outline" })}`}
+  href="https://github.com/Jaycedam/mac-setup"
+  target="_blank"
+>
+  GitHub
+  <ExternalLink className="ml-1 h-4 w-4" />
+</a>

@@ -1,13 +1,53 @@
 ---
 title: "Portfolio V1"
 area: "Website"
-description: "Página web personal creada con React (CRA)"
+description: "Portfolio website created with React (CRA)"
 date: "2022-04"
 featured: true
 tags: ["React", "Django"]
 image: "./images/portfolio-v1/preview.webp"
 ---
 
-_Esta versión de la página es obsoleta en favor de la versión creada con Next.js_
+import { ExternalLink } from "lucide-react";
+import { buttonVariants } from "@components/ui/button";
 
 ## Links
+
+<div class="flex gap-4 flex-wrap">
+    <a
+        class={`no-underline space-x-2 ${buttonVariants({ variant: "outline" })}`}
+        href="https://github.com/Jaycedam/portfolio-frontend"
+        target="_blank"
+    >
+        GitHub - Frontend
+        <ExternalLink className="ml-1 h-4 w-4" />
+    </a>
+
+    <a
+        class={`no-underline space-x-2 ${buttonVariants({ variant: "outline" })}`}
+        href="https://github.com/Jaycedam/portfolio-backend-django"
+        target="_blank"
+    >
+        GitHub - Backend
+        <ExternalLink className="ml-1 h-4 w-4" />
+    </a>
+
+    <a
+        class={`no-underline space-x-2 ${buttonVariants({ variant: "outline" })}`}
+        href="https://portfolio-frontend-eight-sable.vercel.app/"
+        target="_blank"
+    >
+        Live Version
+        <ExternalLink className="ml-1 h-4 w-4" />
+    </a>
+
+    <a
+        class={`no-underline space-x-2 ${buttonVariants({ variant: "outline" })}`}
+        href="https://portfolio-backend-django.vercel.app/api"
+        target="_blank"
+    >
+        Django API Server
+        <ExternalLink className="ml-1 h-4 w-4" />
+    </a>
+
+</div>
