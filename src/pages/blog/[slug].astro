@@ -1,4 +1,5 @@
 ---
+import FormattedDate from "@/components/FormattedDate.astro";
 import { badgeVariants } from "@/components/ui/badge";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
@@ -35,13 +36,7 @@ const { Content } = await mdx.render();
         </p>
 
         <p class="subheading" transition:name={"blog-date-" + mdx.slug}>
-          {
-            mdx.data.date.toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })
-          }
+          <FormattedDate date={mdx.data.date} includeDay />
         </p>
 
         <a

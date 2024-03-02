@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { MoveLeft } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import FormattedDate from "@/components/FormattedDate.astro";
 
 export async function getStaticPaths() {
   const mdx = await getCollection("projects");
@@ -34,12 +35,7 @@ const { Content } = await mdx.render();
         <p class="subtitle">{mdx.data.description}</p>
 
         <p class="subheading">
-          {
-            mdx.data.date.toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "short",
-            })
-          }
+          <FormattedDate date={mdx.data.date} />
         </p>
 
         <a

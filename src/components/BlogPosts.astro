@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "@components/ui/button";
 import { ChevronRight } from "lucide-react";
-import FilterByTag from "./FilterByTag.astro";
-
+import FilterByTag from "@components/FilterByTag.astro";
+import FormattedDate from "@components/FormattedDate.astro";
 const { homepage, title, filter } = Astro.props;
 
 type Props = { homepage: boolean; title: string; filter?: string };
@@ -53,11 +53,7 @@ if (filter) {
               </p>
 
               <p transition:name={"blog-date-" + mdx.slug}>
-                {mdx.data.date.toLocaleDateString("en-us", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
+                <FormattedDate date={mdx.data.date} includeDay />
               </p>
             </div>
           </a>
