@@ -47,6 +47,11 @@ if (filter) {
               >
                 {mdx.data.title}
               </h2>
+
+              <p transition:name={"blog-desc-" + mdx.data.description}>
+                {mdx.data.description}
+              </p>
+
               <p transition:name={"blog-date-" + mdx.slug}>
                 {mdx.data.date.toLocaleDateString("en-us", {
                   year: "numeric",
@@ -54,7 +59,6 @@ if (filter) {
                   day: "numeric",
                 })}
               </p>
-              <p>{mdx.data.description}</p>
             </div>
           </a>
         </li>
