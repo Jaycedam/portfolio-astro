@@ -79,6 +79,10 @@ export default {
           from: { transform: "translateX(30px)", opacity: "0" },
           to: { transform: "translateX(0)", opacity: "1" },
         },
+        "fade-up": {
+          from: { transform: "translateY(40px)", opacity: "0" },
+          to: { transform: "translateY(0)", opacity: "1" },
+        },
         "scale-up": {
           from: { opacity: "0", scale: "0.5" },
           to: { opacity: "1", scale: "1" },
@@ -90,6 +94,9 @@ export default {
         gradient: "gradient 5s infinite",
         fade: "fade .5s ease-in",
         "fade-left": "fade-left linear both",
+        "fade-up-500": "fade-up ease-out .5s forwards",
+        "fade-up-600": "fade-up ease-out .6s forwards",
+        "fade-up-700": "fade-up ease-out .7s forwards",
         "scale-up": "scale-up linear both",
       },
     },

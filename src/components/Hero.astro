@@ -5,7 +5,7 @@ import { buttonVariants } from "@components/ui/button";
 import { Code, MailPlus } from "lucide-react";
 ---
 
-<section>
+<section class="py-8">
   <div class="container flex flex-col items-center justify-center gap-8">
     {/* graphic for hero  */}
     <div class="relative">
@@ -20,14 +20,16 @@ import { Code, MailPlus } from "lucide-react";
         width={400}
         height={400}
         src={hero}
-        class="rounded-full max-w-[200px]"
+        class="rounded-full max-w-[200px] animate-fade"
         loading="eager"
       />
     </div>
 
     <div class="space-y-8 text-center">
       <div class="space-y-2">
-        <h1 class="text-5xl font-black tracking-tight md:text-7xl lg:text-8xl">
+        <h1
+          class="text-4xl sm:5xl font-black tracking-tight animate-fade-up-500 md:text-7xl lg:text-8xl"
+        >
           Jordan Cortés
           <br />
           Software{" "}
@@ -38,16 +40,17 @@ import { Code, MailPlus } from "lucide-react";
           </strong>
         </h1>
 
-        <h2 class="prose text-xl text-muted-foreground">
-          Currently focused on full stack web development (Next.js, Typescript, Astro)
+        <h2 class="prose text-xl text-muted-foreground animate-fade-up-600">
+          Currently focused on full stack web development (Next.js, Typescript,
+          Astro)
         </h2>
       </div>
     </div>
 
-    <div class="flex gap-4">
+    <div class="flex gap-4 animate-fade-up-700">
       <a
         class={buttonVariants({ variant: "default", size: "lg" })}
-        href="/#projects"
+        href="/projects"
       >
         <Code className="h-5" /> &nbsp; Projects
       </a>
