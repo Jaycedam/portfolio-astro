@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
     imagesConfig: {
-      formats: "webp",
+      sizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     },
     isr: {
       // caches all pages on first request and saves for 1 week
