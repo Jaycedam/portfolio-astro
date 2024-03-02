@@ -92,7 +92,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         gradient: "gradient 5s infinite",
-        fade: "fade .5s ease-in",
+        fade: "fade .4s ease-in",
         "fade-left": "fade-left linear both",
         "fade-up-500": "fade-up ease-out .5s forwards",
         "fade-up-600": "fade-up ease-out .6s forwards",
