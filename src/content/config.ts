@@ -11,7 +11,6 @@ export const projectsCollection = defineCollection({
       // Transform string to Date object
       date: z.coerce.date(),
       featured: z.coerce.boolean(),
-      updatedDate: z.coerce.date().optional(),
       tags: z.string().array(),
       image: image(),
     }),
