@@ -20,7 +20,7 @@ const { Content } = await mdx.render();
 ---
 
 <Layout title={mdx.data.title}>
-  <section class="container space-y-16">
+  <section class="container space-y-8">
     <a
       class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
       href="/projects"
@@ -30,7 +30,7 @@ const { Content } = await mdx.render();
       All projects
     </a>
 
-    <div class="max-w-6xl mx-auto space-y-16">
+    <div class="max-w-6xl mx-auto space-y-8">
       <div class="space-y-4">
         <h1 class="title" transition:name={"blog-title-" + mdx.slug}>
           {mdx.data.title}: {mdx.data.description}
@@ -65,7 +65,7 @@ const { Content } = await mdx.render();
         mdx.data.tags.map((tag) => (
           <li>
             <a
-              href={`/projects/tags/${tag}`}
+              href={`/blog/tags/${tag}`}
               class={badgeVariants({ variant: "secondary" })}
             >
               {tag}
