@@ -1,12 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
-import MDXLayout from "@layouts/MDXLayout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
+import { badgeVariants } from "@/components/ui/badge";
+import { MoveLeft } from "lucide-react";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-  const paths = projects.map((item) => ({
+  const mdx = await getCollection("projects");
+  const paths = mdx.map((item) => ({
     params: { slug: item.slug },
     props: item,
   }));
@@ -15,22 +16,30 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<"projects">;
 
-const project = Astro.props;
-const { Content } = await project.render();
+const mdx = Astro.props;
+const { Content } = await mdx.render();
 ---
 
-<Layout title={project.data.title}>
-  <MDXLayout href="/projects" label="All Projects" />
-  <section class="container space-y-16">
-    <div class="max-w-6xl mx-auto space-y-16">
+<Layout title={mdx.data.title}>
+  <section class="container space-y-8">
+    <a
+      class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
+      href="/projects"
+    >
+      <MoveLeft />
+      {" "}
+      All projects
+    </a>
+
+    <div class="max-w-6xl mx-auto space-y-8">
       <div class="space-y-4">
         <h1 class="title">
-          {project.data.title}: {project.data.description}
+          {mdx.data.title}: {mdx.data.description}
         </h1>
 
         <p class="subheading">
           {
-            project.data.date.toLocaleDateString("en-us", {
+            mdx.data.date.toLocaleDateString("en-us", {
               year: "numeric",
               month: "short",
             })
@@ -39,14 +48,14 @@ const { Content } = await project.render();
       </div>
 
       <Image
-        src={project.data.image}
+        src={mdx.data.image}
         alt=""
         class="object-cover aspect-video w-full rounded-3xl"
-        transition:name={project.slug}
+        transition:name={mdx.slug}
         format="avif"
         loading="eager"
-        widths={[360, 720, 1000, project.data.image.width]}
-        sizes={`(max-width: 360px) 360px, (max-width: 720px) 720px, (max-width: 1600px) 1000px, ${project.data.image.width}px`}
+        widths={[360, 720, 1000, mdx.data.image.width]}
+        sizes={`(max-width: 360px) 360px, (max-width: 720px) 720px, (max-width: 1600px) 1000px, ${mdx.data.image.width}px`}
       />
     </div>
 
@@ -55,5 +64,26 @@ const { Content } = await project.render();
     >
       <Content />
     </article>
+  </section>
+
+  <section class="container">
+    <ul class="flex flex-wrap gap-2 max-w-prose mx-auto">
+      <li>
+        <p class="font-bold">Tags:</p>
+      </li>
+
+      {
+        mdx.data.tags.map((tag) => (
+          <li>
+            <a
+              href={`/projects/tags/${tag}`}
+              class={badgeVariants({ variant: "secondary" })}
+            >
+              {tag}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>

@@ -1,7 +1,8 @@
 ---
+import { badgeVariants } from "@/components/ui/badge";
 import Layout from "@layouts/Layout.astro";
-import MDXLayout from "@layouts/MDXLayout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
+import { MoveLeft } from "lucide-react";
 
 export async function getStaticPaths() {
   const mdx = await getCollection("blog");
@@ -19,8 +20,16 @@ const { Content } = await mdx.render();
 ---
 
 <Layout title={mdx.data.title}>
-  <MDXLayout href="/blog" label="All posts" />
   <section class="container space-y-16">
+    <a
+      class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
+      href="/projects"
+    >
+      <MoveLeft />
+      {" "}
+      All projects
+    </a>
+
     <div class="max-w-6xl mx-auto space-y-16">
       <div class="space-y-4">
         <h1 class="title" transition:name={"blog-title-" + mdx.slug}>
@@ -44,5 +53,26 @@ const { Content } = await mdx.render();
     >
       <Content />
     </article>
+  </section>
+
+  <section class="container">
+    <ul class="flex flex-wrap gap-2 max-w-prose mx-auto">
+      <li>
+        <p>Tags</p>
+      </li>
+
+      {
+        mdx.data.tags.map((tag) => (
+          <li>
+            <a
+              href={`/projects/tags/${tag}`}
+              class={badgeVariants({ variant: "secondary" })}
+            >
+              {tag}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>
