@@ -3,12 +3,17 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { buttonVariants } from "./ui/button";
 import { ChevronRight } from "lucide-react";
+import FilterByTag from "@components/FilterByTag.astro";
 
-const { homepage, title } = Astro.props;
+const { homepage, filter, title } = Astro.props;
 
-type Props = { homepage: boolean; title: string };
+type Props = {
+  homepage: boolean;
+  title: string;
+  filter?: string;
+};
 
-const projects = (
+let data = (
   await getCollection("projects", ({ data }) => {
     // if the featured prop is true, then filter the collection
     if (homepage) {
@@ -18,18 +23,30 @@ const projects = (
     return true;
   })
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// filter by tags on the url params
+if (filter) {
+  data = data.filter(
+    (item) =>
+      item.data.tags && item.data.tags.some((tag) => filter.includes(tag))
+  );
+}
 ---
 
 <section id="projects" class="container space-y-8">
   <h1 class={homepage ? "heading" : "title"} transition:name="projects-title">
     {title}
+    {filter && <span class="text-muted-foreground text-sm">{filter}</span>}
   </h1>
+
+  {!homepage && <FilterByTag collection="projects" />}
+
   <div class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-4 `}>
     {
-      projects.map((item) => (
+      data.map((item) => (
         <a
           class="w-full hover:scale-[102%] duration-500 transition-all relative aspect-square overflow-hidden rounded-3xl group"
-          href={`projects/${item.slug}`}
+          href={`/projects/${item.slug}`}
         >
           <div class="animate-fade text-zinc-50 absolute bottom-0 w-full z-10 p-8 bg-gradient-to-t from-black/80 text-end">
             <h2 class="font-bold text-lg">{item.data.title}</h2>

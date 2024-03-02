@@ -37,10 +37,10 @@ export const carreerCollection = defineCollection({
     z.object({
       title: z.string(),
       company: z.string(),
-      type: z.string(),
+      tags: z.string().array(),
       // Transform string to Date object
-      start: z.coerce.date(),
-      end: z.coerce.date().optional(),
+      date: z.coerce.date(),
+      dateEnd: z.coerce.date().optional(),
     }),
 });
 

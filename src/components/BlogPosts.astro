@@ -2,30 +2,42 @@
 import { getCollection } from "astro:content";
 import { buttonVariants } from "./ui/button";
 import { ChevronRight } from "lucide-react";
+import FilterByTag from "./FilterByTag.astro";
 
-const { homepage, title } = Astro.props;
+const { homepage, title, filter } = Astro.props;
 
-type Props = { homepage: boolean; title: string };
+type Props = { homepage: boolean; title: string; filter?: string };
 
-let mdx = (await getCollection("blog")).sort(
+let data = (await getCollection("blog")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
 if (homepage) {
-  mdx = mdx.slice(0, 2);
+  data = data.slice(0, 2);
+}
+
+// filter by tags on the url params
+if (filter) {
+  data = data.filter(
+    (item) =>
+      item.data.tags && item.data.tags.some((tag) => filter.includes(tag))
+  );
 }
 ---
 
 <section id="blog" class="container space-y-8">
   <h1 class={homepage ? "heading" : "title"} transition:name="blog-title">
     {title}
+    {filter && <span class="text-muted-foreground text-sm">{filter}</span>}
   </h1>
+  {!homepage && <FilterByTag collection="blog" />}
+
   <ul class="md:grid-cols-2 grid gap-4">
     {
-      mdx.map((mdx) => (
+      data.map((mdx) => (
         <li>
           <a
-            href={`blog/${mdx.slug}`}
+            href={`/blog/${mdx.slug}`}
             transition:name={"blog-card-" + mdx.slug}
           >
             <div class="border bg-gradient-to-tr from-muted/20 from-10% rounded-3xl w-full p-8">

@@ -3,7 +3,7 @@ import { Badge } from "@components/ui/badge";
 import { getCollection } from "astro:content";
 
 const data = (await getCollection("carreer")).sort(
-  (a, b) => b.data.start.valueOf() - a.data.start.valueOf()
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
@@ -22,14 +22,14 @@ const data = (await getCollection("carreer")).sort(
         data?.map((item) => (
           <li class="motion-safe:fade-left space-y-1 rounded-3xl border bg-background p-6 shadow-sm md:ms-16">
             <time class="block text-sm leading-none text-muted-foreground">
-              {item.data.start.toLocaleDateString("en-us", {
+              {item.data.date.toLocaleDateString("en-us", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",
               })}{" "}
-              {item.data.end &&
+              {item.data.dateEnd &&
                 " - " +
-                  item.data.end.toLocaleDateString("en-us", {
+                  item.data.dateEnd.toLocaleDateString("en-us", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
@@ -41,7 +41,9 @@ const data = (await getCollection("carreer")).sort(
                 {item.data.title} - {item.data.company}
               </h2>
 
-              <Badge className="motion-safe:scale-up" variant="secondary">{item.data.type}</Badge>
+              <Badge className="motion-safe:scale-up" variant="secondary">
+                {item.data.tags}
+              </Badge>
             </div>
 
             <p class="prose b-4 text-muted-foreground dark:prose-invert">
