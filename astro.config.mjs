@@ -19,6 +19,8 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react(),
-    mdx(),
+    mdx({
+      shikiConfig: { theme: "catppuccin-mocha" },
+    }),
   ],
 });
