@@ -33,13 +33,16 @@ const items2: string[] = [
     {/* knoledge section  */}
     <div class="space-y-8">
       <div class="space-y-2">
-        <p class="font-bold">Languages, frameworks or libraries that I've used the most</p>
+        <p class="font-bold">
+          Languages, frameworks or libraries that I've used the most
+        </p>
         <div class="flex flex-wrap gap-4">
           {
             items1.map((item) => (
               <p
                 class={`motion-safe:fade-up ${buttonVariants({
                   variant: "outline",
+                  size: "sm",
                 })}`}
               >
                 {item}
@@ -57,6 +60,7 @@ const items2: string[] = [
               <p
                 class={`motion-safe:fade-up ${buttonVariants({
                   variant: "outline",
+                  size: "sm",
                 })}`}
               >
                 {item}
@@ -71,7 +75,13 @@ const items2: string[] = [
 
     <p class="prose font-light italic text-muted-foreground">
       For my previous work with Motion Graphics visit
-      <a class="text-primary" target="_blank" href="https://dribbble.com/jaycedam"> Dribbble</a>
+      <a
+        class="text-primary"
+        target="_blank"
+        href="https://dribbble.com/jaycedam"
+      >
+        Dribbble</a
+      >
     </p>
   </div>
 </section>
