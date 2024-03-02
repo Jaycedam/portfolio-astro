@@ -8,8 +8,11 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   output: "hybrid",
   adapter: vercel({
+    imageService: true,
+    imagesConfig: {
+      formats: "webp",
+    },
     isr: {
-      imageService: true,
       // caches all pages on first request and saves for 1 week
       expiration: 60 * 60 * 24 * 6,
     },
