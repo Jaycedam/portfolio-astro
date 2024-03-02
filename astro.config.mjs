@@ -7,7 +7,13 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   output: "hybrid",
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      imageService: true,
+      // caches all pages on first request and saves for 1 week
+      expiration: 60 * 60 * 24 * 6,
+    },
+  }),
   integrations: [
     tailwind({
       applyBaseStyles: false,
