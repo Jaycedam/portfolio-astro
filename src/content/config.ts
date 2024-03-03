@@ -32,15 +32,14 @@ export const blogCollection = defineCollection({
 export const carreerCollection = defineCollection({
   type: "content",
   // Type-check frontmatter using a schema
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      company: z.string(),
-      tags: z.string().array(),
-      // Transform string to Date object
-      date: z.coerce.date(),
-      dateEnd: z.coerce.date().optional(),
-    }),
+  schema: z.object({
+    title: z.string(),
+    company: z.string(),
+    tags: z.string().array(),
+    // Transform string to Date object
+    date: z.coerce.date(),
+    dateEnd: z.coerce.date().optional(),
+  }),
 });
 
 export const collections = {

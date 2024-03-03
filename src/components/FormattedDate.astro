@@ -1,10 +1,10 @@
 ---
 interface Props {
   date: Date;
-  includeDay?: false | boolean;
+  includeDay?: boolean;
 }
 
-const { date, includeDay } = Astro.props;
+const { date, includeDay = false } = Astro.props;
 ---
 
 <time datetime={date.toISOString()}>

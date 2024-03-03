@@ -1,6 +1,7 @@
 ---
 import { Badge } from "@components/ui/badge";
 import { getCollection } from "astro:content";
+import FormattedDate from "./FormattedDate.astro";
 
 const data = (await getCollection("carreer")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -16,25 +17,16 @@ const data = (await getCollection("carreer")).sort(
     >
       {/* circle of timeline  */}
       <span
+        aria-hidden="true"
         class="motion-safe:scale-up sticky -left-8 top-1/4 hidden h-8 w-8 items-center justify-center rounded-full bg-primary md:flex"
       ></span>
       {
         data?.map((item) => (
           <li class="motion-safe:fade-left space-y-1 rounded-3xl border bg-background p-6 shadow-sm md:ms-16">
-            <time class="block text-sm leading-none text-muted-foreground">
-              {item.data.date.toLocaleDateString("en-us", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}{" "}
-              {item.data.dateEnd &&
-                " - " +
-                  item.data.dateEnd.toLocaleDateString("en-us", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-            </time>
+            <div class="text-sm space-x-4 leading-none text-muted-foreground">
+              <FormattedDate date={item.data.date} />
+              {item.data.dateEnd && <FormattedDate date={item.data.dateEnd} />}
+            </div>
 
             <div class="inline-flex items-center gap-2">
               <h2 class="flex items-center text-lg font-semibold text-foreground">
