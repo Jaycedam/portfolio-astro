@@ -58,8 +58,13 @@ if (filter) {
             alt=""
             class="object-cover rounded-3xl h-full w-full group-hover:scale-105 transition-all duration-500"
             transition:name={item.slug}
-            widths={[360, 720, 1000, item.data.image.width]}
-            sizes={`(max-width: 360px) 360px, (max-width: 720px) 720px, (max-width: 1600px) 1000px, ${item.data.image.width}px`}
+            widths={[380, 720, 1000, 1500, item.data.image.width]}
+            sizes={`
+              (max-width: 380px) 380px, 
+              (max-width: 720px) 720px, 
+              (max-width: 1920px) 1000px, 
+              (max-width: 2560px) 1500px, 
+              ${item.data.image.width}px`}
           />
           <span class="sr-only">Project details</span>
         </a>
