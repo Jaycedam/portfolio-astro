@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionKey } from "astro:content";
+import { X } from "lucide-react";
 
 type Props = {
   collection: CollectionKey;
@@ -20,29 +21,6 @@ const tags = Array.from(new Set(data.flatMap((item) => item.data.tags))).map(
 
 <div class="flex items-center">
   <ul class="flex gap-4 md:gap-2 items-center flex-wrap">
-    <li>
-      <a
-        class={`
-            h-9 text-sm border rounded-3xl px-4 py-2 relative
-            ${currPath === collection && "text-primary-foreground"}
-          `}
-        href={`/${collection}`}
-      >
-        All
-
-        {
-          /* If the current url path equals to the collection prop (eg: "project", "blog") 
-          then render link bg. The collection is typesafe using the type CollectionKey. */
-          currPath === collection && (
-            <div
-              class="absolute rounded-3xl inset-0 bg-primary -z-10"
-              transition:name="filter-btn"
-            />
-          )
-        }
-      </a>
-    </li>
-
     {
       tags.map((tag) => (
         <li>
@@ -67,5 +45,15 @@ const tags = Array.from(new Set(data.flatMap((item) => item.data.tags))).map(
         </li>
       ))
     }
+
+    <li>
+      <a
+        class="h-9 px-4 py-2 gap-1 text-sm flex items-center bg-secondary text-secondary-foreground rounded-3xl"
+        href={`/${collection}`}
+      >
+        <X className="h-4 w-4" />
+        <span> Clear filters </span>
+      </a>
+    </li>
   </ul>
 </div>
