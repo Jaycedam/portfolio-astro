@@ -4,6 +4,7 @@ import { badgeVariants } from "@/components/ui/badge";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { MoveLeft } from "lucide-react";
+import "@fontsource-variable/jetbrains-mono"; // font
 
 export async function getStaticPaths() {
   const mdx = await getCollection("blog");

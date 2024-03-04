@@ -1,3 +1,5 @@
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -98,6 +100,10 @@ export default {
         "fade-up-500": "fade-up ease-out .5s forwards",
         "fade-up-600": "fade-up ease-out .6s forwards",
         "fade-up-700": "fade-up ease-out .7s forwards",
+      },
+      fontFamily: {
+        sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono Variable", ...defaultTheme.fontFamily.mono],
       },
     },
   },

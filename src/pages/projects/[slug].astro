@@ -5,6 +5,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { MoveLeft } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import FormattedDate from "@/components/FormattedDate.astro";
+import "@fontsource-variable/jetbrains-mono"; // font
 
 export async function getStaticPaths() {
   const mdx = await getCollection("projects");
