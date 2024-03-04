@@ -32,35 +32,40 @@ if (filter) {
   </h1>
   {!homepage && <FilterByTag collection="blog" />}
 
-  <ul class="md:grid-cols-2 grid gap-4">
+  <ol class="md:grid-cols-2 grid gap-8 list-decimal">
     {
       data.map((mdx) => (
-        <li>
-          <a
-            href={`/blog/${mdx.slug}`}
-            transition:name={"blog-card-" + mdx.slug}
-          >
-            <div class="border bg-gradient-to-tr from-muted/20 from-10% rounded-3xl w-full p-8">
-              <h2
-                class="text-xl font-bold"
-                transition:name={"blog-title-" + mdx.slug}
-              >
-                {mdx.data.title}
-              </h2>
+        <li
+          class="marker:text-4xl ml-10 pl-4 marker:font-bold marker:text-muted-foreground/30"
+          transition:name={"blog-card-" + mdx.slug}
+        >
+          <div class="space-y-1">
+            <a
+              class="text-2xl font-bold transition-all"
+              href={`/blog/${mdx.slug}`}
+              transition:name={"blog-title-" + mdx.slug}
+            >
+              {mdx.data.title}
+            </a>
 
-              <p transition:name={"blog-desc-" + mdx.data.description}>
-                {mdx.data.description}
-              </p>
+            <p
+              class="text-muted-foreground"
+              transition:name={"blog-desc-" + mdx.slug}
+            >
+              {mdx.data.description}
+            </p>
 
-              <p transition:name={"blog-date-" + mdx.slug}>
-                <FormattedDate date={mdx.data.date} includeDay />
-              </p>
+            <div
+              class="text-muted-foreground"
+              transition:name={"blog-date-" + mdx.slug}
+            >
+              <FormattedDate date={mdx.data.date} includeDay />
             </div>
-          </a>
+          </div>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   {
     homepage && (

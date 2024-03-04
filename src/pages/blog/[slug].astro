@@ -1,10 +1,10 @@
 ---
 import FormattedDate from "@/components/FormattedDate.astro";
-import { badgeVariants } from "@/components/ui/badge";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { MoveLeft } from "lucide-react";
 import "@fontsource-variable/jetbrains-mono"; // font
+import { buttonVariants } from "@/components/ui/button";
 
 export async function getStaticPaths() {
   const mdx = await getCollection("blog");
@@ -29,10 +29,7 @@ const { Content } = await mdx.render();
           {mdx.data.title}
         </h1>
 
-        <p
-          class="subtitle"
-          transition:name={"blog-desc-" + mdx.data.description}
-        >
+        <p class="subtitle" transition:name={"blog-desc-" + mdx.slug}>
           {mdx.data.description}
         </p>
 
@@ -60,16 +57,12 @@ const { Content } = await mdx.render();
 
   <section class="container">
     <ul class="flex flex-wrap gap-2 max-w-prose mx-auto">
-      <li>
-        <p>Tags</p>
-      </li>
-
       {
         mdx.data.tags.map((tag) => (
           <li>
             <a
               href={`/blog/tags/${tag}`}
-              class={badgeVariants({ variant: "secondary" })}
+              class={buttonVariants({ variant: "secondary" })}
             >
               {tag}
             </a>
