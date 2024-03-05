@@ -12,8 +12,6 @@ export const POST: APIRoute = async ({ params, request }) => {
   const data = await request.json();
   const parsedData = emailSchema.safeParse(data);
 
-  console.log("API reached");
-
   if (!parsedData.success) {
     return new Response(
       JSON.stringify({
@@ -36,8 +34,6 @@ export const POST: APIRoute = async ({ params, request }) => {
       subject: parsedData.data.subject,
     }) as React.ReactElement,
   });
-
-  console.log(send);
 
   if (send.data) {
     return new Response(
