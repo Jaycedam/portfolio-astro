@@ -38,6 +38,8 @@ export default function ContactForm() {
       body: JSON.stringify(data),
     });
 
+    console.log(result);
+
     if (result.status === 200) {
       toast.success("Email sent successfully!");
       form.reset();
