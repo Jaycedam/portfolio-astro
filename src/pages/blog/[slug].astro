@@ -61,7 +61,7 @@ const { Content } = await mdx.render();
         mdx.data.tags.map((tag) => (
           <li>
             <a
-              href={`/blog/tags/${tag}`}
+              href={`/blog/tag/${tag}`}
               class={buttonVariants({ variant: "secondary" })}
             >
               {tag}
