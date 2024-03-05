@@ -1,22 +1,26 @@
 ---
-import { getCollection, type CollectionKey } from "astro:content";
+import { getPostsTags } from "@/lib/blog-collection";
+import { getProjectTags } from "@/lib/project-collection";
+import type { Collection } from "@/lib/types";
 import { X } from "lucide-react";
 
 type Props = {
-  collection: CollectionKey;
+  collection: Collection;
 };
-
 const { collection } = Astro.props;
 
-const data = (await getCollection(collection)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
 const { pathname } = Astro.url;
 const currPath = pathname.split("/").pop();
 
-const tags = Array.from(new Set(data.flatMap((item) => item.data.tags))).map(
-  (tag) => ({ tag })
-);
+let tags: {
+  tag: string;
+}[] = [];
+
+if (collection === "projects") {
+  tags = await getProjectTags();
+} else if (collection === "blog") {
+  tags = await getPostsTags();
+}
 ---
 
 <div class="flex items-center">
