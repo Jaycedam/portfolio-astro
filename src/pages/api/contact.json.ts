@@ -55,11 +55,3 @@ export const POST: APIRoute = async ({ params, request }) => {
     }
   );
 };
-
-export const GET: APIRoute = async ({ request }) => {
-  return new Response(
-    JSON.stringify({
-      message: "API Route working",
-    })
-  );
-};

@@ -32,7 +32,7 @@ export default function ContactForm() {
 
   // form on submit
   const handleSubmit = async (data: EmailForm) => {
-    const result = await fetch("/api/contact", {
+    const result = await fetch("/api/contact.json", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
