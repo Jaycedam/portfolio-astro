@@ -16,6 +16,8 @@ import { Textarea } from "@components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // import SpinnerSVG from "@components/svg/spinner-svg";
 import { type EmailForm } from "@/lib/zod-schema";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 export default function ContactForm() {
   // form definition
@@ -37,16 +39,18 @@ export default function ContactForm() {
     });
 
     if (result.status === 200) {
-      alert("Email sent successfully");
+      toast.success("Email sent successfully!");
+      form.reset();
       return;
     }
-    alert("Something went wrong");
+    toast.error("Something went wrong, please try again.");
   };
 
   return (
     <section id="contact" className="py-16">
+      <Toaster richColors position="top-center" />
       <div className="container">
-        <Card className="mx-auto max-w-4xl">
+        <Card className="mx-auto max-w-4xl bg-gradient-to-tl from-muted/20">
           <CardHeader>
             <CardTitle>Contact</CardTitle>
           </CardHeader>
