@@ -109,11 +109,7 @@ export default function ContactForm() {
                   disabled={form.formState.isSubmitting}
                   type="submit"
                 >
-                  {form.formState.isSubmitting ? (
-                    <p>Loading...</p>
-                  ) : (
-                    <>Enviar</>
-                  )}
+                  {form.formState.isSubmitting ? <p>Sending...</p> : <>Send</>}
                 </Button>
               </form>
             </Form>
