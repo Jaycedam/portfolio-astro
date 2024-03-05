@@ -1,0 +1,37 @@
+---
+import type { Project } from "@lib/types";
+import { Image } from "astro:assets";
+
+type Props = {
+  project: Project;
+};
+
+const { project } = Astro.props;
+---
+
+<a
+  class="w-full hover:scale-[102%] duration-500 transition-all relative aspect-square overflow-hidden rounded-3xl group"
+  href={`/projects/${project.slug}`}
+>
+  <div
+    class="animate-fade text-zinc-50 absolute bottom-0 w-full z-10 p-8 bg-gradient-to-t from-black/80 text-end"
+  >
+    <h2 class="font-bold text-lg">{project.data.title}</h2>
+    <p class="text-sm font-light">{project.data.area}</p>
+  </div>
+
+  <Image
+    src={project.data.image}
+    alt=""
+    class="object-cover rounded-3xl h-full w-full group-hover:scale-105 transition-all duration-500"
+    transition:name={project.slug}
+    widths={[380, 720, 1000, 1500, project.data.image.width]}
+    sizes={`
+              (max-width: 380px) 380px, 
+              (max-width: 720px) 720px, 
+              (max-width: 1920px) 1000px, 
+              (max-width: 2560px) 1500px, 
+              ${project.data.image.width}px`}
+  />
+  <span class="sr-only">Project details</span>
+</a>
