@@ -1,11 +1,26 @@
 ---
-export const prerender = false;
-const { slug } = Astro.params;
+import Projects from "@/components/Projects.astro";
 import Layout from "@layouts/Layout.astro";
-import Projects from "@components/Projects.astro";
+import { getCollection } from "astro:content";
+
+const { slug } = Astro.params;
+const tag = Astro.props;
+
+export async function getStaticPaths() {
+  const data = await getCollection("projects");
+  const tags = Array.from(new Set(data.flatMap((item) => item.data.tags))).map(
+    (tag) => ({ tag })
+  );
+
+  const paths = tags.map((item) => ({
+    params: { slug: item.tag },
+    props: item,
+  }));
+
+  return paths;
+}
 ---
 
-<!-- TODO: Add loader similar to React's Suspense -->
 <Layout title={`${slug} Projects`}>
-  <Projects homepage={false} filter={slug} title="Projects" />
+  <Projects homepage={false} title="Projects" filter={tag.tag} />
 </Layout>
