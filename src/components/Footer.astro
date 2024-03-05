@@ -1,9 +1,10 @@
 ---
 import { Github } from "lucide-react";
+const email = import.meta.env.EMAIL;
 ---
 
 <footer class="py-16 px-8 border-t mt-auto flex justify-between">
-  <a href="mailto:contact@jordancortes.dev">contact@jordancortes.dev</a>
+  <a href={`mailto:${email}`}>{email}</a>
 
   <a target="_blank" href="https://github.com/Jaycedam">
     <Github />
