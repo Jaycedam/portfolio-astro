@@ -5,6 +5,7 @@ import Hero from "@components/Hero.astro";
 import BlogPosts from "@/components/BlogPosts.astro";
 import About from "@components/About.astro";
 import Carreer from "@components/Carreer.astro";
+import ContactForm from "@components/ContactForm";
 ---
 
 <Layout title="Home">
@@ -13,4 +14,5 @@ import Carreer from "@components/Carreer.astro";
   <BlogPosts homepage title="Blog: Latest Posts" />
   <Carreer />
   <About />
+  <ContactForm client:visible />
 </Layout>
