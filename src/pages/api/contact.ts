@@ -3,6 +3,8 @@ import { Resend } from "resend";
 import { emailSchema } from "@/lib/zod-schema";
 import { EmailTemplate } from "@/components/EmailTemplate";
 
+export const prerender = false;
+
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 const email = import.meta.env.RESEND_EMAIL;
 
