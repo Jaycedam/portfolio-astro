@@ -10,7 +10,7 @@ type Props = {
 const { collection } = Astro.props;
 
 const { pathname } = Astro.url;
-const currPath = pathname.split("/").pop();
+const subpath = pathname.match(/[^\/]+/g)?.pop();
 
 let tags: {
   tag: string;
@@ -31,13 +31,13 @@ if (collection === "projects") {
           <a
             class={`
               h-9 text-sm border rounded-3xl px-4 py-2 relative
-              ${currPath === tag.tag && "text-primary-foreground"}
+              ${tag.tag === subpath && "text-primary-foreground"}
             `}
             href={`/${collection}/tag/${tag.tag}`}
           >
             {tag.tag}
 
-            {tag.tag === currPath && (
+            {tag.tag === subpath && (
               // TODO: fix z-index issue on transition
               // If the current path match the name of the tag, then render the link bg
               <div
