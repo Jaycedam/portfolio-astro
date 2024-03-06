@@ -8,7 +8,7 @@ export const prerender = false;
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 const email = import.meta.env.RESEND_EMAIL;
 
-export const POST: APIRoute = async ({ params, request }) => {
+export const POST: APIRoute = async ({ request }) => {
   const data = await request.json();
   const parsedData = emailSchema.safeParse(data);
 
