@@ -2,7 +2,6 @@
 import { getPostsTags } from "@/lib/blog-collection";
 import { getProjectTags } from "@/lib/project-collection";
 import type { Collection } from "@/lib/types";
-import { X } from "lucide-react";
 
 type Props = {
   collection: Collection;
@@ -25,6 +24,26 @@ if (collection === "projects") {
 
 <div class="flex items-center">
   <ul class="flex gap-4 md:gap-2 items-center flex-wrap">
+    <li>
+      <a
+        class={`h-9 text-sm border rounded-3xl px-4 py-2 relative
+          ${collection === subpath && "text-primary-foreground"}`}
+        href={`/${collection}`}
+      >
+        All
+        {
+          collection === subpath && (
+            // TODO: fix z-index issue on transition
+            // If the current path match the name of the tag, then render the link bg
+            <div
+              class="absolute rounded-3xl inset-0 bg-primary -z-10"
+              transition:name="filter-btn"
+            />
+          )
+        }
+      </a>
+    </li>
+
     {
       tags.map((tag) => (
         <li>
@@ -49,15 +68,5 @@ if (collection === "projects") {
         </li>
       ))
     }
-
-    <li>
-      <a
-        class="h-9 px-4 py-2 gap-1 text-sm flex items-center bg-secondary text-secondary-foreground rounded-3xl"
-        href={`/${collection}`}
-      >
-        <X className="h-4 w-4" />
-        <span> Clear filters </span>
-      </a>
-    </li>
   </ul>
 </div>
