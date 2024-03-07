@@ -7,7 +7,7 @@ tags: ["nextjs", "intercepting-routes"]
 
 Since Next.js doesn't support exit animations yet ([Relevant issue](https://github.com/vercel/next.js/issues/49279)), we need to manually create the animation event.
 
-For this example I'm using the [Sheet component](https://ui.shadcn.com/docs/components/sheet) from shadcn/ui, but you can use the [Dialog](https://www.radix-ui.com/primitives/docs/components/dialog#api-reference) from Radix directly and apply your own style.
+For this example I'm using the [Sheet component](https://ui.shadcn.com/docs/components/sheet) from shadcn/ui, but you can use the [Dialog](https://www.radix-ui.com/primitives/docs/components/dialog#api-reference) from Radix directly with your own style.
 
 ## Initial modal component
 
@@ -39,11 +39,11 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Where we just call the router.back() to close the modal.
+Where we just call the **router.back()** to close the modal.
 
 ## Adding a closing animation
 
-To achieve this, we need to control the open state ourselves to perform the router.back() after the closing animation, using the Radix API _onAnimationEndCapture_.
+To achieve this, we need to control the open state to perform the **router.back()** after the closing animation ends, using **onAnimationEndCapture**.
 
 ```diff lang="tsx" wrap title="app/components/modal.tsx" "={open}"
 "use client";
@@ -82,14 +82,12 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Now, the _onOpenChange_ only changes the open state, and _onAnimationEndCapture_ is the function that checks if the modal is closed, then calls router.back().
-
 ## Result
 
 Now when pressing the close button or the ESC key, the modal will exit with an animation then go back to the previous URL.
 
 <video class="w-full rounded-md aspect-[16/10]" autoPlay muted loop controls>
-  <source src="/intercepting-modal.webm" type="video/webm" />
+  <source src="/blog/intercepting-modal.webm" type="video/webm" />
   Your browser does not support the video tag.
 </video>
 
