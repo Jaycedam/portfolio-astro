@@ -1,0 +1,98 @@
+---
+title: "Add closing animation to Intercepting Route modal using Next.js"
+description: ""
+date: "2024-03-7"
+tags: ["nextjs", "intercepting-routes"]
+---
+
+Since Next.js doesn't support exit animations yet ([Relevant issue](https://github.com/vercel/next.js/issues/49279)), we need to manually create the animation event.
+
+For this example I'm using the [Sheet component](https://ui.shadcn.com/docs/components/sheet) from shadcn/ui, but you can use the [Dialog](https://www.radix-ui.com/primitives/docs/components/dialog#api-reference) from Radix directly and apply your own style.
+
+## Initial modal component
+
+This is our initial component using shadcn/ui Drawer component, based on the [Next.js docs](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#modals).
+
+```tsx title="app/components/modal.tsx" wrap
+"use client";
+
+import { useRouter } from "next/navigation";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+
+export default function Modal({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
+  function handleClose() {
+    router.back();
+  }
+
+  return (
+    <Sheet open onOpenChange={handleClose}>
+      <SheetContent
+        side="bottom"
+        className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
+      >
+        {children}
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+Where we just call the router.back() to close the modal.
+
+## Adding a closing animation
+
+To achieve this, we need to control the open state ourselves to perform the router.back() after the closing animation, using the Radix API _onAnimationEndCapture_.
+
+```diff lang="tsx" wrap title="app/components/modal.tsx" "={open}"
+"use client";
+
+import { useRouter } from "next/navigation";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
++import { useState } from "react";
+
+export default function Modal({ children }: { children: React.ReactNode }) {
++  const [open, setOpen] = useState(true);
+  const router = useRouter();
+
+  function handleClose() {
+-    router.back();
++    setOpen(false);
+  }
+
++  function handleAnimationEnd() {
++    // when the modal animation ends: if it's closed, navigate back
++    if (!open) {
++      router.back();
++    }
++  }
+
+  return (
+    <Sheet open={open} onOpenChange={handleClose}>
+      <SheetContent
++        onAnimationEndCapture={handleAnimationEnd}
+        side="bottom"
+        className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
+      >
+        {children}
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+Now, the _onOpenChange_ only changes the open state, and _onAnimationEndCapture_ is the function that checks if the modal is closed, then calls router.back().
+
+## Result
+
+Now when pressing the close button or the ESC key, the modal will exit with an animation then go back to the previous URL.
+
+<video class="w-full rounded-md aspect-[16/10]" autoPlay muted loop controls>
+  <source src="/intercepting-modal.webm" type="video/webm" />
+  Your browser does not support the video tag.
+</video>
+
+We still can't animate when the React component is unmounted (eg: when using the browser's back button), for that we'll have to wait for native framework support.
+
+For now this cover the rest of usecases.
