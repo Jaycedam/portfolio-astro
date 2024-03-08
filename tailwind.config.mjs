@@ -8,7 +8,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
         "2xl": "1400px",
       },
@@ -78,7 +78,7 @@ export default {
           to: { opacity: "1" },
         },
         "fade-left": {
-          from: { transform: "translateX(30px)", opacity: "0" },
+          from: { transform: "translateX(20px)", opacity: "0" },
           to: { transform: "translateX(0)", opacity: "1" },
         },
         "fade-up": {
