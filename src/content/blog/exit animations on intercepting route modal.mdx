@@ -13,7 +13,7 @@ For this example I'm using the [Sheet component](https://ui.shadcn.com/docs/comp
 
 This is our initial component using shadcn/ui Drawer component, based on the [Next.js docs](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#modals).
 
-```tsx title="app/components/modal.tsx" wrap
+```tsx title="app/components/modal.tsx"
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -45,7 +45,7 @@ Where we just call the **router.back()** to close the modal.
 
 To achieve this, we need to control the open state to perform the **router.back()** after the closing animation ends, using **onAnimationEndCapture**.
 
-```diff lang="tsx" wrap title="app/components/modal.tsx" "={open}"
+```diff lang="tsx" title="app/components/modal.tsx" "={open}"
 "use client";
 
 import { useRouter } from "next/navigation";
