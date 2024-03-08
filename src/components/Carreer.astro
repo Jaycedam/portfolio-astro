@@ -1,7 +1,6 @@
 ---
-import { Badge } from "@components/ui/badge";
 import { getCollection } from "astro:content";
-import FormattedDate from "./FormattedDate.astro";
+import CarreerCard from "@components/CarreerCard.astro";
 
 const data = (await getCollection("carreer")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -9,39 +8,23 @@ const data = (await getCollection("carreer")).sort(
 ---
 
 <section class="border-y bg-gradient-to-b from-muted/20 to-muted/10 py-16">
-  <div class="container">
-    <h1 class="heading text-center">Carreer</h1>
-    <p class="subheading text-center">As a Software Developer</p>
-    <ol
-      class="relative max-w-prose space-y-8 before:absolute before:left-4 before:hidden before:h-full before:border-l before:border-border md:mx-auto md:before:block"
-    >
-      {/* circle of timeline  */}
-      <span
-        aria-hidden="true"
-        class="motion-safe:scale-up sticky -left-8 top-1/4 hidden h-8 w-8 items-center justify-center rounded-full bg-primary md:flex"
-      ></span>
+  <div class="container max-w-prose space-y-16">
+    <div>
+      <h1 class="heading text-center">Carreer</h1>
+      <p class="subheading text-center">As a Software Developer</p>
+    </div>
+
+    <ol class="space-y-16">
       {
-        data?.map((item) => (
-          <li class="motion-safe:fade-left space-y-1 rounded-3xl border bg-background p-6 shadow-sm md:ms-16">
-            <div class="text-sm space-x-4 leading-none text-muted-foreground">
-              <FormattedDate date={item.data.date} />
-              {item.data.dateEnd && <FormattedDate date={item.data.dateEnd} />}
-            </div>
-
-            <div class="inline-flex items-center gap-2">
-              <h2 class="flex items-center text-lg font-bold text-foreground">
-                {item.data.title} - {item.data.company}
-              </h2>
-
-              <Badge className="motion-safe:scale-up" variant="secondary">
-                {item.data.tags}
-              </Badge>
-            </div>
-
-            <p class="prose b-4 text-muted-foreground dark:prose-invert">
-              {item.body}
-            </p>
-          </li>
+        data.map((item) => (
+          <CarreerCard
+            title={item.data.title}
+            company={item.data.company}
+            desc={item.body}
+            date={item.data.date}
+            dateEnd={item.data.dateEnd && item.data.dateEnd}
+            tags={item.data.tags}
+          />
         ))
       }
     </ol>
