@@ -19,7 +19,21 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react(),
-    expressiveCode(),
+    expressiveCode({
+      themes: ["dracula"],
+      styleOverrides: {
+        codeBackground: "#18181b",
+        borderColor: "#27272a",
+        frames: {
+          editorTabBarBackground: "#18181b",
+          editorActiveTabBackground: "#27272a",
+          terminalBackground: "#18181b",
+          terminalTitlebarBackground: "#18181b",
+          editorActiveTabIndicatorTopColor: "#3f3f46",
+          terminalTitlebarBorderBottomColor: "#18181b",
+        },
+      },
+    }),
     mdx(),
   ],
 });
