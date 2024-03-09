@@ -5,8 +5,11 @@ import mdx from "@astrojs/mdx";
 import vercel from "@astrojs/vercel/serverless";
 import expressiveCode from "astro-expressive-code";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
+  site: "https://www.jordancortes.dev",
   output: "hybrid",
   adapter: vercel({
     isr: {
@@ -35,5 +38,6 @@ export default defineConfig({
       },
     }),
     mdx(),
+    sitemap(),
   ],
 });
