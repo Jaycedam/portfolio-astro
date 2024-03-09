@@ -22,7 +22,7 @@ const mdx = Astro.props;
 const { Content } = await mdx.render();
 ---
 
-<Layout title={mdx.data.title}>
+<Layout title={mdx.data.title + "| JC Portfolio"}>
   <section class="container space-y-16">
     <div class="max-w-prose mx-auto space-y-8">
       <div class="space-y-4">
