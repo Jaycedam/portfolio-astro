@@ -41,9 +41,7 @@ const { Content } = await mdx.render();
             <FormattedDate date={mdx.data.date} includeDay />
           </p>
 
-          <p>{mdx.slug}</p>
-
-          <ViewCounter slug={mdx.slug} client:idle />
+          <ViewCounter slug={mdx.slug} client:load />
         </div>
         <a
           class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
