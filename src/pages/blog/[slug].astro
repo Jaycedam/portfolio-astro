@@ -39,7 +39,7 @@ const { Content } = await mdx.render();
             <FormattedDate date={mdx.data.date} includeDay />
           </p>
 
-          <ViewCounter slug={mdx.slug} client:only />
+          <ViewCounter client:only />
         </div>
 
         <a

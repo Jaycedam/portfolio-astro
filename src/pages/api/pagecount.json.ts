@@ -11,10 +11,10 @@ export const GET: APIRoute = async ({ request }) => {
   const slug = new URL(request.url).searchParams.get("slug");
 
   // if no slug provided, we return a bad request response
-  if (!slug) {
+  if (!slug || slug === undefined) {
     return new Response(
       JSON.stringify({
-        message: "Bad request on slug: " + slug + ", url: " + request.url,
+        message: "Bad request on slug: " + slug,
       }),
       {
         status: 400,
