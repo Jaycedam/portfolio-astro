@@ -6,6 +6,7 @@ import { MoveLeft } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/jetbrains-mono"; // font
+import ViewCounter from "@/components/ViewCounter";
 
 export async function getStaticPaths() {
   const mdx = await getCollection("projects");
@@ -35,10 +36,13 @@ const { Content } = await mdx.render();
 
         <p class="subtitle">{mdx.data.description}</p>
 
-        <p class="subheading">
-          <FormattedDate date={mdx.data.date} />
-        </p>
+        <div class="flex subheading gap-8">
+          <p transition:name={"blog-date-" + mdx.slug}>
+            <FormattedDate date={mdx.data.date} includeDay />
+          </p>
 
+          <ViewCounter slug={mdx.slug} client:idle />
+        </div>
         <a
           class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
           href="/projects"

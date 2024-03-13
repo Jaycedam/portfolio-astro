@@ -5,6 +5,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { MoveLeft } from "lucide-react";
 import "@fontsource-variable/jetbrains-mono"; // font
 import { buttonVariants } from "@/components/ui/button";
+import ViewCounter from "@components/ViewCounter";
 
 export async function getStaticPaths() {
   const mdx = await getCollection("blog");
@@ -33,9 +34,13 @@ const { Content } = await mdx.render();
           {mdx.data.description}
         </p>
 
-        <p class="subheading" transition:name={"blog-date-" + mdx.slug}>
-          <FormattedDate date={mdx.data.date} includeDay />
-        </p>
+        <div class="flex subheading gap-8">
+          <p transition:name={"blog-date-" + mdx.slug}>
+            <FormattedDate date={mdx.data.date} includeDay />
+          </p>
+
+          <ViewCounter slug={mdx.slug} client:idle />
+        </div>
 
         <a
           class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
