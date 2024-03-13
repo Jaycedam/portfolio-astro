@@ -21,7 +21,6 @@ type Props = CollectionEntry<"projects">;
 
 const mdx = Astro.props;
 const { Content } = await mdx.render();
-const { pathname } = Astro.url;
 ---
 
 <Layout title={mdx.data.title + "| JC Portfolio"}>
@@ -42,7 +41,7 @@ const { pathname } = Astro.url;
             <FormattedDate date={mdx.data.date} includeDay />
           </p>
 
-          <ViewCounter url={pathname} client:idle />
+          <ViewCounter slug={mdx.slug} client:only />
         </div>
         <a
           class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"

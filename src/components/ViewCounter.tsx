@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-export default function ViewCounter({ url }: { url: string }) {
+export default function ViewCounter({ slug }: { slug: string }) {
   const [count, setCount] = useState(0);
-  const api = "/api/pagecount.json?slug=" + url;
+  const api = "/api/pagecount.json?slug=" + slug;
 
   useEffect(() => {
     fetch(api)
