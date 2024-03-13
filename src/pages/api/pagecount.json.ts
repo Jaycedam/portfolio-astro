@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { eq, sql } from "drizzle-orm/sql";
+import { sql } from "drizzle-orm/sql";
 import { page } from "@db/schema";
 import { db } from "@db/db";
 
@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ request }) => {
   if (!slug) {
     return new Response(
       JSON.stringify({
-        message: 0,
+        message: "Bad request on slug: " + slug + ", url: " + request.url,
       }),
       {
         status: 400,
