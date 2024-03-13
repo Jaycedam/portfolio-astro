@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ request }) => {
   if (!slug || slug === undefined) {
     return new Response(
       JSON.stringify({
-        message: "Bad request on slug: " + slug,
+        message: "Bad request on slug: " + slug + " url: " + request.url,
       }),
       {
         status: 400,
