@@ -6,7 +6,7 @@ env:
 on:
   push:
     branches:
-      - main
+      - view-count
   pull_request:
     types: [opened, reopened, synchronize]
 
