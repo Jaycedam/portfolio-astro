@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
-import { db, PageCount, eq, sql } from "astro:db";
+import { eq, sql } from "drizzle-orm/sql";
+import { page } from "@db/schema";
+import { db } from "@db/db";
 
 export const prerender = false;
 
@@ -21,36 +23,20 @@ export const GET: APIRoute = async ({ request }) => {
     );
   }
 
-  // if slug provided, we increment the view count using upsert
+  // if slug provided, we increment the view count using upsert,
+  // we also return the new count in the same query
   const upCount = await db
-    .insert(PageCount)
-    .values({ slug })
+    .insert(page)
+    .values({ slug: slug })
     .onConflictDoUpdate({
-      target: PageCount.slug,
+      target: page.slug,
       set: { views: sql`views + 1` },
-    });
-
-  // if no rows affected, we return a bad request
-  if (upCount.rowsAffected === 0) {
-    return new Response(
-      JSON.stringify({
-        message: 0,
-      }),
-      {
-        status: 400,
-      }
-    );
-  }
-
-  // if rows affected, we return the current view count
-  const currCount = await db
-    .select({ views: PageCount.views })
-    .from(PageCount)
-    .where(eq(PageCount.slug, slug));
+    })
+    .returning({ views: page.views });
 
   return new Response(
     JSON.stringify({
-      message: currCount[0].views,
+      message: upCount[0].views,
     }),
     {
       status: 200,
