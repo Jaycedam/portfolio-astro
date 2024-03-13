@@ -20,6 +20,7 @@ type Props = CollectionEntry<"blog">;
 
 const mdx = Astro.props;
 const { Content } = await mdx.render();
+const { pathname } = Astro.url;
 ---
 
 <Layout title={mdx.data.title + " | JC Portfolio"}>
@@ -39,7 +40,7 @@ const { Content } = await mdx.render();
             <FormattedDate date={mdx.data.date} includeDay />
           </p>
 
-          <ViewCounter slug={mdx.slug} client:idle />
+          <ViewCounter url={pathname} client:idle />
         </div>
 
         <a
