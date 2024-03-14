@@ -5,11 +5,10 @@ import { db } from "@db/db";
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request }) => {
   // we get the slug from the url, passed as a query param,
   // eg /api/pagecount?slug=hello-world
-  const body = await request.json();
-  const slug = body.slug;
+  const slug = new URL(request.url).searchParams.get("slug");
 
   // if no slug provided, we return a bad request response
   if (!slug || slug === undefined) {
