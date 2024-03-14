@@ -43,7 +43,7 @@ const { pathname } = Astro.url;
             <FormattedDate date={mdx.data.date} includeDay />
           </p>
 
-          <ViewCounter pathname={pathname} client:only="react" />
+          <ViewCounter pathname={pathname} client:idle />
         </div>
         <a
           class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
