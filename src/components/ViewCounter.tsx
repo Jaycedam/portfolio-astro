@@ -4,9 +4,9 @@ export default function ViewCounter({ pathname }: { pathname: string }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const api = "/api/pagecount.json?slug=" + pathname;
+    const api = "/api/pagecount.json";
 
-    fetch(api)
+    fetch(api, { method: "POST", body: JSON.stringify({ slug: pathname }) })
       .then((res) => res.json())
       .then((res) => setCount(res.message));
   }, []);
