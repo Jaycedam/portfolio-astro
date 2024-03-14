@@ -10,12 +10,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://www.jordancortes.dev",
   output: "hybrid",
-  adapter: vercel({
-    isr: {
-      // caches all pages on first request and saves for 1 week
-      expiration: 60 * 60 * 24 * 6,
-    },
-  }),
+  adapter: vercel(),
   integrations: [
     tailwind({
       applyBaseStyles: false,
