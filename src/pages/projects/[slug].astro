@@ -21,38 +21,36 @@ type Props = CollectionEntry<"projects">;
 
 const mdx = Astro.props;
 const { Content } = await mdx.render();
-
-const { pathname } = Astro.url;
 ---
 
 <Layout title={mdx.data.title + "| JC Portfolio"}>
   <section class="container space-y-16">
     <div class="max-w-prose mx-auto space-y-8">
+      <a
+        class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        href="/projects"
+      >
+        <MoveLeft />
+        {" "}
+        Back to projects
+      </a>
+
       <div class="space-y-4">
         <div class="space-y-2">
-          <p class="text-muted-foreground">{mdx.data.area}</p>
           <h1 class="title">
             {mdx.data.title}
           </h1>
+
+          <div class="flex text-muted-foreground gap-4">
+            <p transition:name={"blog-date-" + mdx.slug}>
+              <FormattedDate date={mdx.data.date} />
+            </p>
+
+            <ViewCounter client:only="react" />
+          </div>
         </div>
 
         <p class="subtitle">{mdx.data.description}</p>
-
-        <div class="flex subheading gap-8">
-          <p transition:name={"blog-date-" + mdx.slug}>
-            <FormattedDate date={mdx.data.date} includeDay />
-          </p>
-
-          <ViewCounter client:only />
-        </div>
-        <a
-          class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
-          href="/projects"
-        >
-          <MoveLeft />
-          {" "}
-          Back to all projects
-        </a>
       </div>
     </div>
 
