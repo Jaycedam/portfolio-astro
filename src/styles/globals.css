@@ -87,7 +87,7 @@
   }
 
   .heading {
-    @apply text-3xl font-black capitalize;
+    @apply text-4xl font-black capitalize;
   }
 
   .subheading {

@@ -32,16 +32,13 @@ if (filter) {
   </h1>
   {!homepage && <FilterByTag collection="blog" />}
 
-  <ol class="md:grid-cols-2 grid gap-8 list-decimal">
+  <ol class="md:grid-cols-2 grid gap-8">
     {
       data.map((mdx) => (
-        <li
-          class="marker:text-4xl ml-10 pl-4 marker:font-bold marker:text-muted-foreground/30"
-          transition:name={"blog-card-" + mdx.slug}
-        >
+        <li transition:name={"blog-card-" + mdx.slug}>
           <div class="space-y-1">
             <a
-              class="text-2xl font-bold transition-all"
+              class="text-xl font-bold transition-all"
               href={`/blog/${mdx.slug}`}
               transition:name={"blog-title-" + mdx.slug}
             >
