@@ -9,10 +9,22 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === "/" + subpath?.[0];
 ---
 
-<a
-  href={href}
-  class={`font-semibold  ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-  {...props}
->
-  <slot />
-</a>
+<div class="relative grid isolate items-center h-16">
+  <a
+    href={href}
+    class={`font-semibold  ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+    {...props}
+  >
+    <slot />
+  </a>
+
+  {
+    // ERROR: bg for link is behind the nav when animating, ignoring the z index
+    isActive && (
+      <div
+        transition:name="nav-bg"
+        class="absolute bottom-0 -z-10 h-1 w-full rounded-full bg-primary"
+      />
+    )
+  }
+</div>
