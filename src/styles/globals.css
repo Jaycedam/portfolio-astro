@@ -102,6 +102,6 @@
   }
 }
 
-::view-transition-group(nav-bg) {
-  z-index: 60;
+::view-transition-group(navbar) {
+  z-index: 50;
 }
