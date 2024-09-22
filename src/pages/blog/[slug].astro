@@ -5,16 +5,15 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { MoveLeft } from "lucide-react";
 import "@fontsource-variable/jetbrains-mono"; // font
 import { buttonVariants } from "@/components/ui/button";
-import ViewCounter from "@components/ViewCounter";
 
 export async function getStaticPaths() {
-  const mdx = await getCollection("blog");
-  const paths = mdx.map((item) => ({
-    params: { slug: item.slug },
-    props: item,
-  }));
+    const mdx = await getCollection("blog");
+    const paths = mdx.map((item) => ({
+        params: { slug: item.slug },
+        props: item,
+    }));
 
-  return paths;
+    return paths;
 }
 type Props = CollectionEntry<"blog">;
 
@@ -23,55 +22,55 @@ const { Content } = await mdx.render();
 ---
 
 <Layout title={mdx.data.title + " | JC Portfolio"}>
-  <section class="container space-y-8">
-    <div class="max-w-prose mx-auto space-y-8">
-      <a
-        class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
-        href="/blog"
-      >
-        <MoveLeft />
-        {" "}
-        Back to blog
-      </a>
-
-      <div class="space-y-4">
-        <h1 class="title" transition:name={"blog-title-" + mdx.slug}>
-          {mdx.data.title}
-        </h1>
-
-        <p class="subtitle" transition:name={"blog-desc-" + mdx.slug}>
-          {mdx.data.description}
-        </p>
-
-        <div class="flex text-muted-foreground gap-4">
-          <p transition:name={"blog-date-" + mdx.slug}>
-            <FormattedDate date={mdx.data.date} includeDay />
-          </p>
-
-          <ViewCounter client:only="react" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <article class="prose prose-h2:heading prose-zinc mx-auto dark:prose-invert">
-    <Content />
-  </article>
-
-  <section class="container">
-    <ul class="flex flex-wrap gap-2 max-w-prose mx-auto">
-      {
-        mdx.data.tags.map((tag) => (
-          <li>
+    <section class="container space-y-8">
+        <div class="max-w-prose mx-auto space-y-8">
             <a
-              href={`/blog/tag/${tag}`}
-              class={buttonVariants({ variant: "secondary" })}
+                class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                href="/blog"
             >
-              {tag}
+                <MoveLeft />
+                {" "}
+                Back to blog
             </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+
+            <div class="space-y-4">
+                <h1 class="title" transition:name={"blog-title-" + mdx.slug}>
+                    {mdx.data.title}
+                </h1>
+
+                <p class="subtitle" transition:name={"blog-desc-" + mdx.slug}>
+                    {mdx.data.description}
+                </p>
+
+                <div class="flex text-muted-foreground gap-4">
+                    <p transition:name={"blog-date-" + mdx.slug}>
+                        <FormattedDate date={mdx.data.date} includeDay />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <article
+        class="prose prose-h2:heading prose-zinc mx-auto dark:prose-invert"
+    >
+        <Content />
+    </article>
+
+    <section class="container">
+        <ul class="flex flex-wrap gap-2 max-w-prose mx-auto">
+            {
+                mdx.data.tags.map((tag) => (
+                    <li>
+                        <a
+                            href={`/blog/tag/${tag}`}
+                            class={buttonVariants({ variant: "secondary" })}
+                        >
+                            {tag}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
 </Layout>
