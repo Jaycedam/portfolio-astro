@@ -1,20 +1,14 @@
 ---
 import { buttonVariants } from "./ui/button";
-
-const email = import.meta.env.EMAIL;
 ---
 
-<footer class="py-16 px-8 border-t mt-auto flex justify-between">
-  <a class={buttonVariants({ variant: "link" })} href={`mailto:${email}`}
-    >{email}
-  </a>
-
-  <a
-    class={buttonVariants({ variant: "link" })}
-    target="_blank"
-    href="https://github.com/Jaycedam"
-  >
-    GitHub
-    <span class="sr-only">GitHub</span>
-  </a>
+<footer class="py-16 px-8 border-t mt-auto flex justify-end">
+    <a
+        class={buttonVariants({ variant: "link" })}
+        target="_blank"
+        href="https://github.com/Jaycedam"
+    >
+        GitHub
+        <span class="sr-only">GitHub</span>
+    </a>
 </footer>
