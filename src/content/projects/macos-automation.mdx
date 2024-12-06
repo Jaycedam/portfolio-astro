@@ -3,7 +3,7 @@ title: "macOS Automation"
 area: "CLI"
 description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
-featured: false
+featured: true
 tags: ["Bash"]
 image: "./images/macos-automation/preview.webp"
 ---
@@ -17,16 +17,6 @@ Opinionated automation shell scripts to set up macOS.
   - Installs packages listed in a [Brewfile](Brewfile) using [brew](https://brew.sh) and [mas](https://github.com/mas-cli/mas) (for App Store apps).
 - Changes some macOS default preferences; see the full list [here](modules/preferences.sh).
 
-## Screenshots
-
-I try to keep all my configs very minimal while maintaining all the features I need.
-
-> [!NOTE]  
-> I don't update these often, so they may be out of date.
-
-### Wezterm and Neovim
-![Wezterm and Neovim](images/terminal.webp)
-
 ## Automated setup
 > [!CAUTION]
 > This will overwrite your dotfiles. If you want to use this project with your own backup [read this first](#how-to-use).
@@ -38,7 +28,6 @@ git -v
 
 Start:
 ```sh
-mkdir ~/Developer
 git clone https://github.com/Jaycedam/mac-setup.git ~/Developer/mac-setup
 cd ~/Developer/mac-setup && sh main.sh
 ```
@@ -51,8 +40,7 @@ Some settings must be changed manually due to API limitation or lack of document
 ## How to use
 If you want to use this project with your own dotfiles and configs, just follow these instructions:
 
-> [!IMPORTANT]
-> The path **~/Developer/mac-setup** is expected by the script; it's used to generate symlinks and relative path operations.
+**IMPORTANT**: The path *~/Developer/mac-setup* is expected by the script; it's used to generate symlinks and relative path operations.
 
 1. Fork the project then git clone (Replace **USERNAME** with yours):
 ```sh
@@ -69,8 +57,6 @@ cd ~/Developer/mac-setup && rm -rf dotfiles/*
 cd ~/Developer/mac-setup && sh backup.sh
 ```
 
-> [!TIP]
-> If you install new Brew packages, just run **backup.sh** again to update the Brewfile.
-  
-4. Make sure to change the USERNAME from the url in the [automated setup](#automated-setup) section to yours. Then push the changes to your repo.
+*If you install new Brew packages, just run **backup.sh** again to update the Brewfile.*
 
+4. Make sure to change the USERNAME from the url in the [automated setup](#automated-setup) section to yours. Then push the changes to your repo.
