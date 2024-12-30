@@ -13,7 +13,9 @@ For this example I'm using the [Sheet component](https://ui.shadcn.com/docs/comp
 
 This is our initial component using shadcn/ui Drawer component, based on the [Next.js docs](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#modals).
 
-```tsx title="app/components/modal.tsx"
+```tsx
+// app/components/modal.tsx
+
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -45,33 +47,35 @@ Where we just call the **router.back()** to close the modal.
 
 To achieve this, we need to control the open state to perform the **router.back()** after the closing animation ends, using **onAnimationEndCapture**.
 
-```diff lang="tsx" title="app/components/modal.tsx" "={open}"
+```tsx title=
+// app/components/modal.tsx
+
 "use client";
 
 import { useRouter } from "next/navigation";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
-+import { useState } from "react";
+import { useState } from "react"; // [!code ++]
 
 export default function Modal({ children }: { children: React.ReactNode }) {
-+  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true); // [!code ++]
   const router = useRouter();
 
   function handleClose() {
--    router.back();
-+    setOpen(false);
+    router.back();// [!code --]
+    setOpen(false);// [!code ++]
   }
 
-+  function handleAnimationEnd() {
-+    // when the modal animation ends: if it's closed, navigate back
-+    if (!open) {
-+      router.back();
-+    }
-+  }
+  function handleAnimationEnd() { // [!code ++]
+    // when the modal animation ends: if it's closed, navigate back // [!code ++]
+    if (!open) { // [!code ++]
+      router.back(); // [!code ++]
+    } // [!code ++]
+  } // [!code ++]
 
   return (
     <Sheet open={open} onOpenChange={handleClose}>
       <SheetContent
-+        onAnimationEndCapture={handleAnimationEnd}
+        onAnimationEndCapture={handleAnimationEnd} // [!code ++]
         side="bottom"
         className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
       >
