@@ -9,69 +9,70 @@ const { homepage, title, filter } = Astro.props;
 type Props = { homepage: boolean; title: string; filter?: string };
 
 let data = (await getCollection("blog")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
 if (homepage) {
-  data = data.slice(0, 2);
+    data = data.slice(0, 2);
 }
 
 // filter by tags on the url params
 if (filter) {
-  data = data.filter(
-    (item) =>
-      item.data.tags && item.data.tags.some((tag) => filter.includes(tag))
-  );
+    data = data.filter(
+        (item) =>
+            item.data.tags &&
+            item.data.tags.some((tag) => filter.includes(tag)),
+    );
 }
 ---
 
 <section id="blog" class="container space-y-8">
-  <h1 class={homepage ? "heading" : "title"}>
-    {title}
-    {filter && <span class="text-muted-foreground text-xl">{filter}</span>}
-  </h1>
-  {!homepage && <FilterByTag collection="blog" />}
+    <h1 class={homepage ? "heading" : "title"}>
+        {title}
+        {filter && <span class="text-muted-foreground text-xl">{filter}</span>}
+    </h1>
+    {!homepage && <FilterByTag collection="blog" />}
 
-  <ol class="md:grid-cols-2 grid gap-8">
+    <ol class="md:grid-cols-2 grid gap-8">
+        {
+            data.map((item) => (
+                <li transition:name={"blog-card-" + item.id}>
+                    <div class="space-y-1">
+                        <a
+                            class="text-xl font-bold transition-all"
+                            href={`/blog/${item.id}`}
+                            transition:name={"blog-title-" + item.id}
+                        >
+                            {item.data.title}
+                        </a>
+
+                        <p
+                            class="text-muted-foreground"
+                            transition:name={"blog-desc-" + item.id}
+                        >
+                            {item.data.description}
+                        </p>
+
+                        <div
+                            class="text-muted-foreground"
+                            transition:name={"blog-date-" + item.id}
+                        >
+                            <FormattedDate date={item.data.date} includeDay />
+                        </div>
+                    </div>
+                </li>
+            ))
+        }
+    </ol>
+
     {
-      data.map((mdx) => (
-        <li transition:name={"blog-card-" + mdx.slug}>
-          <div class="space-y-1">
-            <a
-              class="text-xl font-bold transition-all"
-              href={`/blog/${mdx.slug}`}
-              transition:name={"blog-title-" + mdx.slug}
-            >
-              {mdx.data.title}
-            </a>
-
-            <p
-              class="text-muted-foreground"
-              transition:name={"blog-desc-" + mdx.slug}
-            >
-              {mdx.data.description}
-            </p>
-
-            <div
-              class="text-muted-foreground"
-              transition:name={"blog-date-" + mdx.slug}
-            >
-              <FormattedDate date={mdx.data.date} includeDay />
+        homepage && (
+            <div class="grid justify-end">
+                <a href="/blog" class={buttonVariants({ variant: "outline" })}>
+                    All posts
+                    <ChevronRight className="h-4" />
+                </a>
             </div>
-          </div>
-        </li>
-      ))
+        )
     }
-  </ol>
-
-  {
-    homepage && (
-      <div class="grid justify-end">
-        <a href="/blog" class={buttonVariants({ variant: "outline" })}>
-          All posts
-          <ChevronRight className="h-4" />
-        </a>
-      </div>
-    )
-  }
 </section>

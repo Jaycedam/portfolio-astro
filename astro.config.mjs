@@ -8,7 +8,6 @@ import { transformerNotationDiff } from "@shikijs/transformers";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.jordancortes.dev",
-  output: "hybrid",
   adapter: vercel(),
   markdown: {
     shikiConfig: {
