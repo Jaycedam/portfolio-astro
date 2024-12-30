@@ -47,7 +47,7 @@ Where we just call the **router.back()** to close the modal.
 
 To achieve this, we need to control the open state to perform the **router.back()** after the closing animation ends, using **onAnimationEndCapture**.
 
-```tsx title=
+```tsx
 // app/components/modal.tsx
 
 "use client";
