@@ -7,5 +7,4 @@ export type Navlinks = {
 
 export type Project = CollectionEntry<"projects">;
 export type Blog = CollectionEntry<"blog">;
-export type Carreer = CollectionEntry<"carreer">;
 export type Collection = CollectionKey;
