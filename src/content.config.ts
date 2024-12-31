@@ -16,9 +16,9 @@ export const projectsCollection = defineCollection({
       image: image(),
     }),
 });
+
 export const blogCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/data/blog" }),
-
   // Type-check frontmatter using a schema
   schema: ({ image }) =>
     z.object({
@@ -31,21 +31,7 @@ export const blogCollection = defineCollection({
       image: image().optional(),
     }),
 });
-export const carreerCollection = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/data/carreer" }),
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    title: z.string(),
-    company: z.string(),
-    tags: z.string().array(),
-    // Transform string to Date object
-    date: z.coerce.date(),
-    dateEnd: z.coerce.date().optional(),
-  }),
-});
-
 export const collections = {
   projects: projectsCollection,
   blog: blogCollection,
-  carreer: carreerCollection,
 };
