@@ -8,40 +8,45 @@ import ProjectCard from "@components/ProjectCard.astro";
 const { homepage, filter, title } = Astro.props;
 
 type Props = {
-  homepage: boolean;
-  title: string;
-  // filter by tag
-  filter?: string;
+    homepage: boolean;
+    title: string;
+    // filter by tag
+    filter?: string;
 };
 
 let data = await getProjects(homepage);
 
 // if a filter is passed as prop, then filter
 if (filter) {
-  data = filterProjectByTag(data, filter);
+    data = filterProjectByTag(data, filter);
 }
 ---
 
-<section id="projects" class="container space-y-8">
-  <h1 class={homepage ? "heading" : "title"}>
-    {title}
-    {filter && <span class="text-muted-foreground text-xl">{filter}</span>}
-  </h1>
+<section id="projects" class="space-y-8">
+    <h1 class={homepage ? "heading" : "title"}>
+        {title}
+        {filter && <span class="text-muted-foreground text-xl">{filter}</span>}
+    </h1>
 
-  {!homepage && <FilterByTag collection="projects" />}
+    {!homepage && <FilterByTag collection="projects" />}
 
-  <div class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-8 `}>
-    {data.map((project) => <ProjectCard project={project} />)}
-  </div>
+    <div
+        class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-8 `}
+    >
+        {data.map((project) => <ProjectCard project={project} />)}
+    </div>
 
-  {
-    homepage && (
-      <div class="grid justify-end">
-        <a href="/projects" class={buttonVariants({ variant: "outline" })}>
-          All projects
-          <ChevronRight className="h-4" />
-        </a>
-      </div>
-    )
-  }
+    {
+        homepage && (
+            <div class="grid justify-end">
+                <a
+                    href="/projects"
+                    class={buttonVariants({ variant: "outline" })}
+                >
+                    All projects
+                    <ChevronRight className="h-4" />
+                </a>
+            </div>
+        )
+    }
 </section>

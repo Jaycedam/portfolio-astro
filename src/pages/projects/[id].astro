@@ -2,11 +2,10 @@
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
-import { MoveLeft } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/jetbrains-mono"; // font
-import { getEntry, render } from "astro:content";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
     const item = await getCollection("projects");
@@ -24,71 +23,62 @@ const { Content } = await render(item);
 ---
 
 <Layout title={item.data.title + "| JC Portfolio"}>
-    <section class="container space-y-16">
-        <div class="max-w-prose mx-auto space-y-8">
-            <a
-                class="inline-flex gap-2 text-muted-foreground hover:text-foreground transition-colors"
-                href="/projects"
-            >
-                <MoveLeft />
-                {" "}
-                Back to projects
-            </a>
+    <section class="space-y-16">
+        <!--TODO: add breadcrumbs-->
 
-            <div class="space-y-4">
-                <div class="space-y-2">
+        <!--image, title, desc and tags -->
+        <div class="space-y-8">
+            <Image
+                src={item.data.image}
+                alt=""
+                class="object-cover aspect-video w-full max-w-4xl mx-auto rounded-3xl"
+                transition:name={item.id}
+                loading="eager"
+                format="avif"
+                widths={[380, 720, 1000, 1500, item.data.image.width]}
+                sizes={`
+                    (max-width: 380px) 380px, 
+                    (max-width: 720px) 720px, 
+                    (max-width: 1920px) 1000px, 
+                    (max-width: 2560px) 1500px, 
+                    ${item.data.image.width}px`}
+            />
+
+            <div class="max-w-prose mx-auto space-y-8">
+                <div class="space-y-4 text-center">
                     <h1 class="title">
                         {item.data.title}
                     </h1>
 
-                    <div class="flex text-muted-foreground gap-4">
-                        <p transition:name={"blog-date-" + item.id}>
-                            <FormattedDate date={item.data.date} />
-                        </p>
-                    </div>
+                    <p class="subtitle">{item.data.description}</p>
                 </div>
-
-                <p class="subtitle">{item.data.description}</p>
+                <ul
+                    class="flex justify-center flex-wrap gap-2 max-w-prose mx-auto"
+                >
+                    {
+                        item.data.tags.map((tag) => (
+                            <li>
+                                <a
+                                    href={`/projects/tag/${tag}`}
+                                    class={buttonVariants({
+                                        variant: "secondary",
+                                        size: "sm",
+                                    })}
+                                >
+                                    {tag}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
             </div>
         </div>
 
-        <Image
-            src={item.data.image}
-            alt=""
-            class="object-cover aspect-video w-full rounded-3xl"
-            transition:name={item.id}
-            loading="eager"
-            format="avif"
-            widths={[380, 720, 1000, 1500, item.data.image.width]}
-            sizes={`
-      (max-width: 380px) 380px, 
-      (max-width: 720px) 720px, 
-      (max-width: 1920px) 1000px, 
-      (max-width: 2560px) 1500px, 
-      ${item.data.image.width}px`}
-        />
-
+        <!--markdown content -->
         <article
             class="prose prose-h2:heading prose-zinc mx-auto dark:prose-invert"
         >
             <Content />
         </article>
-    </section>
-
-    <section class="container">
-        <ul class="flex flex-wrap gap-2 max-w-prose mx-auto">
-            {
-                item.data.tags.map((tag) => (
-                    <li>
-                        <a
-                            href={`/projects/tag/${tag}`}
-                            class={buttonVariants({ variant: "secondary" })}
-                        >
-                            {tag}
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
     </section>
 </Layout>

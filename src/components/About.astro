@@ -2,84 +2,84 @@
 import { buttonVariants } from "@components/ui/button";
 
 const items1: string[] = [
-  "Next.js",
-  "React",
-  "Astro",
-  "Typescript",
-  "TailwindCSS",
-  "SQL",
-  "Prisma",
-  "Python",
-  "Django",
-  "Framer Motion",
-  "Zod",
-  "React Hook Form",
+    "Next.js",
+    "React",
+    "Astro",
+    "Typescript",
+    "TailwindCSS",
+    "SQL",
+    "Prisma",
+    "Python",
+    "Django",
+    "Framer Motion",
+    "Zod",
+    "React Hook Form",
 ];
 
 const items2: string[] = [
-  "C#",
-  "Java",
-  "Spring Boot",
-  "PL/SQL",
-  "Bootstrap",
-  "SASS",
+    "C#",
+    "Java",
+    "Spring Boot",
+    "PL/SQL",
+    "Bootstrap",
+    "SASS",
 ];
 ---
 
-<section class="container grid gap-8 lg:grid-cols-[auto_1fr]" id="about">
-  <h2 class="heading lg:justify-self-end">About me</h2>
+<section class="grid gap-8 lg:grid-cols-[auto_1fr]" id="about">
+    <h2 class="heading lg:justify-self-end">About me</h2>
 
-  <div class="space-y-8">
-    {/* knoledge section  */}
     <div class="space-y-8">
-      <div class="space-y-4">
-        <p class="font-bold">
-          Languages, frameworks or libraries that I've used the most
+        {/* knoledge section  */}
+        <div class="space-y-8">
+            <div class="space-y-4">
+                <p class="font-bold">
+                    Languages, frameworks or libraries that I've used the most
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    {
+                        items1.map((item) => (
+                            <p
+                                class={`motion-safe:fade-up ${buttonVariants({
+                                    variant: "outline",
+                                    size: "sm",
+                                })}`}
+                            >
+                                {item}
+                            </p>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <p class="font-bold">Used less often</p>
+                <div class="flex flex-wrap gap-4">
+                    {
+                        items2.map((item) => (
+                            <p
+                                class={`motion-safe:fade-up ${buttonVariants({
+                                    variant: "outline",
+                                    size: "sm",
+                                })}`}
+                            >
+                                {item}
+                            </p>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <p class="prose font-light italic text-muted-foreground">
+            For my previous work with Motion Graphics visit
+            <a
+                class="text-primary"
+                target="_blank"
+                href="https://dribbble.com/jaycedam"
+            >
+                Dribbble</a
+            >
         </p>
-        <div class="flex flex-wrap gap-4">
-          {
-            items1.map((item) => (
-              <p
-                class={`motion-safe:fade-up ${buttonVariants({
-                  variant: "outline",
-                  size: "sm",
-                })}`}
-              >
-                {item}
-              </p>
-            ))
-          }
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        <p class="font-bold">Used less often</p>
-        <div class="flex flex-wrap gap-4">
-          {
-            items2.map((item) => (
-              <p
-                class={`motion-safe:fade-up ${buttonVariants({
-                  variant: "outline",
-                  size: "sm",
-                })}`}
-              >
-                {item}
-              </p>
-            ))
-          }
-        </div>
-      </div>
     </div>
-
-    <p class="prose font-light italic text-muted-foreground">
-      For my previous work with Motion Graphics visit
-      <a
-        class="text-primary"
-        target="_blank"
-        href="https://dribbble.com/jaycedam"
-      >
-        Dribbble</a
-      >
-    </p>
-  </div>
 </section>

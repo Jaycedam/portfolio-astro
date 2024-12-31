@@ -49,73 +49,71 @@ export default function ContactForm() {
   return (
     <section id="contact" className="py-16">
       <Toaster richColors position="top-center" />
-      <div className="container">
-        <Card className="mx-auto max-w-4xl bg-gradient-to-tl from-muted/20">
-          <CardHeader>
-            <CardTitle>Contact</CardTitle>
-          </CardHeader>
+      <Card className="mx-auto max-w-4xl bg-gradient-to-tl from-muted/20">
+        <CardHeader>
+          <CardTitle>Contact</CardTitle>
+        </CardHeader>
 
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4"
-              >
-                <div className="grid gap-4 md:grid-cols-2">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Your Email</FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Subject</FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
+        <CardContent>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-4"
+            >
+              <div className="grid gap-4 md:grid-cols-2">
                 <FormField
                   control={form.control}
-                  name="message"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Message</FormLabel>
+                      <FormLabel>Your Email</FormLabel>
                       <FormControl>
-                        <Textarea className="resize-y" {...field} />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Subject</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-                <Button
-                  className="w-24"
-                  disabled={form.formState.isSubmitting}
-                  type="submit"
-                >
-                  {form.formState.isSubmitting ? <p>Sending...</p> : <>Send</>}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </div>
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea className="resize-y" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                className="w-24"
+                disabled={form.formState.isSubmitting}
+                type="submit"
+              >
+                {form.formState.isSubmitting ? <p>Sending...</p> : <>Send</>}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </section>
   );
 }
