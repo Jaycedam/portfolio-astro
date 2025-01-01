@@ -2,7 +2,7 @@
 title: "Add closing animation to Intercepting Route modal using Next.js"
 description: ""
 date: "2024-03-7"
-tags: ["nextjs", "intercepting-routes"]
+tags: ["Next.js"]
 ---
 
 Since Next.js doesn't support exit animations yet ([Relevant issue](https://github.com/vercel/next.js/issues/49279)), we need to manually create the animation event.
@@ -22,22 +22,22 @@ import { useRouter } from "next/navigation";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 export default function Modal({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
+    const router = useRouter();
 
-  function handleClose() {
-    router.back();
-  }
+    function handleClose() {
+        router.back();
+    }
 
-  return (
-    <Sheet open onOpenChange={handleClose}>
-      <SheetContent
-        side="bottom"
-        className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
-      >
-        {children}
-      </SheetContent>
-    </Sheet>
-  );
+    return (
+        <Sheet open onOpenChange={handleClose}>
+            <SheetContent
+                side="bottom"
+                className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
+            >
+                {children}
+            </SheetContent>
+        </Sheet>
+    );
 }
 ```
 
@@ -57,32 +57,34 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useState } from "react"; // [!code ++]
 
 export default function Modal({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(true); // [!code ++]
-  const router = useRouter();
+    const [open, setOpen] = useState(true); // [!code ++]
+    const router = useRouter();
 
-  function handleClose() {
-    router.back();// [!code --]
-    setOpen(false);// [!code ++]
-  }
+    function handleClose() {
+        router.back(); // [!code --]
+        setOpen(false); // [!code ++]
+    }
 
-  function handleAnimationEnd() { // [!code ++]
-    // when the modal animation ends: if it's closed, navigate back // [!code ++]
-    if (!open) { // [!code ++]
-      router.back(); // [!code ++]
+    function handleAnimationEnd() {
+        // [!code ++]
+        // when the modal animation ends: if it's closed, navigate back // [!code ++]
+        if (!open) {
+            // [!code ++]
+            router.back(); // [!code ++]
+        } // [!code ++]
     } // [!code ++]
-  } // [!code ++]
 
-  return (
-    <Sheet open={open} onOpenChange={handleClose}>
-      <SheetContent
-        onAnimationEndCapture={handleAnimationEnd} // [!code ++]
-        side="bottom"
-        className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
-      >
-        {children}
-      </SheetContent>
-    </Sheet>
-  );
+    return (
+        <Sheet open={open} onOpenChange={handleClose}>
+            <SheetContent
+                onAnimationEndCapture={handleAnimationEnd} // [!code ++]
+                side="bottom"
+                className="h-full overflow-auto rounded-t-3xl px-0 py-16 md:h-[96%]"
+            >
+                {children}
+            </SheetContent>
+        </Sheet>
+    );
 }
 ```
 
