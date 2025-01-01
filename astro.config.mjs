@@ -7,21 +7,21 @@ import { transformerNotationDiff } from "@shikijs/transformers";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.jordancortes.dev",
-  adapter: vercel(),
-  markdown: {
-    shikiConfig: {
-      theme: "tokyo-night",
-      // Enable word wrap to prevent horizontal scrolling
-      wrap: true,
-      transformers: [transformerNotationDiff()],
+    site: "https://www.jordancortes.dev",
+    adapter: vercel(),
+    markdown: {
+        shikiConfig: {
+            theme: "dracula",
+            // Enable word wrap to prevent horizontal scrolling
+            wrap: true,
+            transformers: [transformerNotationDiff()],
+        },
     },
-  },
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    sitemap(),
-  ],
+    integrations: [
+        tailwind({
+            applyBaseStyles: false,
+        }),
+        react(),
+        sitemap(),
+    ],
 });
