@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import { buttonVariants } from "@components/ui/button";
-import { ChevronRight } from "lucide-react";
 import FilterByTag from "@components/FilterByTag.astro";
 import FormattedDate from "@components/FormattedDate.astro";
+import Link from "@ui/Link.astro";
+
 const { homepage, title, filter } = Astro.props;
 
 type Props = { homepage: boolean; title: string; filter?: string };
@@ -29,11 +29,11 @@ if (filter) {
 <section id="blog" class="space-y-8">
     <h1 class={homepage ? "heading" : "title"}>
         {title}
-        {filter && <span class="text-muted-foreground text-xl">{filter}</span>}
+        {filter && <span class="text-xl text-muted-foreground">{filter}</span>}
     </h1>
     {!homepage && <FilterByTag collection="blog" />}
 
-    <ol class="md:grid-cols-2 grid gap-8">
+    <ol class="grid gap-8 md:grid-cols-2">
         {
             data.map((item) => (
                 <li transition:name={"blog-card-" + item.id}>
@@ -65,13 +65,13 @@ if (filter) {
         }
     </ol>
 
+    <!--if this component is rendered on the homepage, then render the link to all projects-->
     {
         homepage && (
             <div class="grid justify-end">
-                <a href="/blog" class={buttonVariants({ variant: "outline" })}>
-                    All posts
-                    <ChevronRight className="h-4" />
-                </a>
+                <Link variant="outline" size="lg" href="/blog">
+                    See all posts
+                </Link>
             </div>
         )
     }

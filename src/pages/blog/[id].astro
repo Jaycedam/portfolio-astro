@@ -2,8 +2,8 @@
 import FormattedDate from "@/components/FormattedDate.astro";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import "@fontsource-variable/jetbrains-mono"; // font
-import { buttonVariants } from "@/components/ui/button";
+import "@fontsource-variable/jetbrains-mono"; // code font
+import Link from "@/components/ui/Link.astro";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog");
@@ -42,7 +42,7 @@ const { Content } = await render(item);
             <!--        ${item.data.image.width}px`}-->
             <!--/>-->
 
-            <div class="max-w-prose mx-auto space-y-8">
+            <div class="mx-auto max-w-prose space-y-8">
                 <div class="space-y-4 text-center">
                     <h1 class="title" transition:name={"blog-title-" + item.id}>
                         {item.data.title}
@@ -64,19 +64,17 @@ const { Content } = await render(item);
                 <!--</div>-->
             </div>
 
-            <ul class="flex justify-center flex-wrap gap-2 max-w-prose mx-auto">
+            <ul class="mx-auto flex max-w-prose flex-wrap justify-center gap-2">
                 {
                     item.data.tags.map((tag) => (
                         <li>
-                            <a
+                            <Link
+                                variant="secondary"
+                                size="sm"
                                 href={`/blog/tag/${tag}`}
-                                class={buttonVariants({
-                                    variant: "secondary",
-                                    size: "sm",
-                                })}
                             >
                                 {tag}
-                            </a>
+                            </Link>
                         </li>
                     ))
                 }
@@ -85,7 +83,7 @@ const { Content } = await render(item);
 
         <!--markdown content -->
         <article
-            class="prose prose-h2:heading prose-zinc mx-auto dark:prose-invert"
+            class="prose-h2:heading prose prose-zinc mx-auto dark:prose-invert"
         >
             <Content />
         </article>

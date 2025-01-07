@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import sitemap from "@astrojs/sitemap";
 import { transformerNotationDiff } from "@shikijs/transformers";
 
@@ -21,7 +20,10 @@ export default defineConfig({
         tailwind({
             applyBaseStyles: false,
         }),
-        react(),
         sitemap(),
     ],
+    experimental: {
+        // https://docs.astro.build/en/reference/experimental-flags/svg/
+        svg: true,
+    },
 });

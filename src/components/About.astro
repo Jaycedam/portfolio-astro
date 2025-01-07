@@ -1,6 +1,4 @@
 ---
-import { buttonVariants } from "@components/ui/button";
-
 const items1: string[] = [
     "Next.js",
     "React",
@@ -37,36 +35,14 @@ const items2: string[] = [
                     Languages, frameworks or libraries that I've used the most
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    {
-                        items1.map((item) => (
-                            <p
-                                class={`motion-safe:fade-up ${buttonVariants({
-                                    variant: "outline",
-                                    size: "sm",
-                                })}`}
-                            >
-                                {item}
-                            </p>
-                        ))
-                    }
+                    {items1.map((item) => <p>{item}</p>)}
                 </div>
             </div>
 
             <div class="space-y-4">
                 <p class="font-bold">Used less often</p>
                 <div class="flex flex-wrap gap-4">
-                    {
-                        items2.map((item) => (
-                            <p
-                                class={`motion-safe:fade-up ${buttonVariants({
-                                    variant: "outline",
-                                    size: "sm",
-                                })}`}
-                            >
-                                {item}
-                            </p>
-                        ))
-                    }
+                    {items2.map((item) => <p>{item}</p>)}
                 </div>
             </div>
         </div>

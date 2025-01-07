@@ -7,20 +7,20 @@ const { slug } = Astro.params;
 const tag = Astro.props;
 
 export async function getStaticPaths() {
-  const data = await getCollection("projects");
-  const tags = Array.from(new Set(data.flatMap((item) => item.data.tags))).map(
-    (tag) => ({ tag })
-  );
+    const data = await getCollection("projects");
+    const tags = Array.from(
+        new Set(data.flatMap((item) => item.data.tags)),
+    ).map((tag) => ({ tag }));
 
-  const paths = tags.map((item) => ({
-    params: { slug: item.tag },
-    props: item,
-  }));
+    const paths = tags.map((item) => ({
+        params: { slug: item.tag },
+        props: item,
+    }));
 
-  return paths;
+    return paths;
 }
 ---
 
 <Layout title={`${slug} Projects | JC Portfolio`}>
-  <Projects homepage={false} title="Projects" filter={tag.tag} />
+    <Projects homepage={false} title="Projects" filter={tag.tag} />
 </Layout>
