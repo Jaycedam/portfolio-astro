@@ -2,116 +2,118 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ["class"],
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  prefix: "",
-  theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "6rem",
-      },
-      screens: {
-        "2xl": "1400px",
-      },
+    darkMode: ["class"],
+    content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+    prefix: "",
+    theme: {
+        container: {
+            center: true,
+            padding: {
+                DEFAULT: "1rem",
+            },
+            //screens: {
+            //    "2xl": "1400px",
+            //},
+        },
+        extend: {
+            colors: {
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
+            },
+            borderRadius: {
+                lg: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
+                sm: "calc(var(--radius) - 4px)",
+            },
+            keyframes: {
+                "accordion-down": {
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
+                },
+                "accordion-up": {
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
+                },
+                gradient: {
+                    "0%, 100%": {
+                        "background-size": "200% 200%",
+                        "background-position": "left center",
+                    },
+                    "50%": {
+                        "background-size": "200% 200%",
+                        "background-position": "right center",
+                    },
+                },
+                fade: {
+                    from: { opacity: "0" },
+                    to: { opacity: "1" },
+                },
+                "fade-left": {
+                    from: { transform: "translateX(20px)", opacity: "0" },
+                    to: { transform: "translateX(0)", opacity: "1" },
+                },
+                "fade-up": {
+                    from: { transform: "translateY(40px)", opacity: "0" },
+                    to: { transform: "translateY(0)", opacity: "1" },
+                },
+                "scale-up": {
+                    from: { opacity: "0", scale: "0.5" },
+                    to: { opacity: "1", scale: "1" },
+                },
+            },
+            animation: {
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
+                gradient: "gradient 5s infinite",
+                fade: "fade .4s ease-in",
+                "fade-left": "fade-left linear both",
+                "scale-up": "scale-up linear both",
+                "fade-up-500": "fade-up ease-out .5s forwards",
+                "fade-up-600": "fade-up ease-out .6s forwards",
+                "fade-up-700": "fade-up ease-out .7s forwards",
+            },
+            fontFamily: {
+                sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+                mono: [
+                    "JetBrains Mono Variable",
+                    ...defaultTheme.fontFamily.mono,
+                ],
+            },
+        },
     },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        gradient: {
-          "0%, 100%": {
-            "background-size": "200% 200%",
-            "background-position": "left center",
-          },
-          "50%": {
-            "background-size": "200% 200%",
-            "background-position": "right center",
-          },
-        },
-        fade: {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        "fade-left": {
-          from: { transform: "translateX(20px)", opacity: "0" },
-          to: { transform: "translateX(0)", opacity: "1" },
-        },
-        "fade-up": {
-          from: { transform: "translateY(40px)", opacity: "0" },
-          to: { transform: "translateY(0)", opacity: "1" },
-        },
-        "scale-up": {
-          from: { opacity: "0", scale: "0.5" },
-          to: { opacity: "1", scale: "1" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        gradient: "gradient 5s infinite",
-        fade: "fade .4s ease-in",
-        "fade-left": "fade-left linear both",
-        "scale-up": "scale-up linear both",
-        "fade-up-500": "fade-up ease-out .5s forwards",
-        "fade-up-600": "fade-up ease-out .6s forwards",
-        "fade-up-700": "fade-up ease-out .7s forwards",
-      },
-      fontFamily: {
-        sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
-        mono: ["JetBrains Mono Variable", ...defaultTheme.fontFamily.mono],
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+    plugins: [
+        require("tailwindcss-animate"),
+        require("@tailwindcss/typography"),
+    ],
 };
