@@ -5,6 +5,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // font
 import { render } from "astro:content";
 import Link from "@/components/ui/Link.astro";
+import Article from "@components/Article.astro";
 
 export async function getStaticPaths() {
     const item = await getCollection("projects");
@@ -18,13 +19,12 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"projects">;
 
 const item = Astro.props;
-const { Content } = await render(item);
+
+const { Content, headings } = await render(item);
 ---
 
 <Layout title={item.data.title + "| JC Portfolio"}>
-    <section class="space-y-16">
-        <!--TODO: add breadcrumbs-->
-
+    <section class="space-y-20">
         <!--image, title, desc and tags -->
         <div class="space-y-8">
             <Image
@@ -51,6 +51,7 @@ const { Content } = await render(item);
 
                     <p class="subtitle">{item.data.description}</p>
                 </div>
+
                 <ul
                     class="mx-auto flex max-w-prose flex-wrap justify-center gap-2"
                 >
@@ -71,11 +72,8 @@ const { Content } = await render(item);
             </div>
         </div>
 
-        <!--markdown content -->
-        <article
-            class="prose-h2:heading prose prose-zinc mx-auto dark:prose-invert"
-        >
+        <Article headings={headings}>
             <Content />
-        </article>
+        </Article>
     </section>
 </Layout>

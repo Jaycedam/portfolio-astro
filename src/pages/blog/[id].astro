@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // code font
 import Link from "@/components/ui/Link.astro";
+import Article from "@components/Article.astro";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog");
@@ -17,11 +18,11 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const item = Astro.props;
-const { Content } = await render(item);
+const { Content, headings } = await render(item);
 ---
 
 <Layout title={item.data.title + " | JC Portfolio"}>
-    <section class="space-y-16">
+    <section class="space-y-20">
         <!--TODO: add breadcrumbs-->
 
         <!--image, title, desc and tags -->
@@ -82,10 +83,8 @@ const { Content } = await render(item);
         </div>
 
         <!--markdown content -->
-        <article
-            class="prose-h2:heading prose prose-zinc mx-auto dark:prose-invert"
-        >
+        <Article headings={headings}>
             <Content />
-        </article>
+        </Article>
     </section>
 </Layout>

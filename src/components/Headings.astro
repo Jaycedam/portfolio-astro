@@ -1,0 +1,26 @@
+---
+import { type MarkdownHeading } from "astro";
+import Link from "@ui/Link.astro";
+
+type Props = {
+    headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+---
+
+<div class="h-min w-full max-w-prose space-y-4 lg:top-16 xl:sticky xl:max-w-28">
+    <p class="text-sm font-medium">On this page</p>
+
+    <ul class="flex w-min max-w-16 flex-col gap-2">
+        {
+            headings.map((heading) => (
+                <li>
+                    <Link class="px-0" variant="link" href={"#" + heading.slug}>
+                        {heading.text}
+                    </Link>
+                </li>
+            ))
+        }
+    </ul>
+</div>
