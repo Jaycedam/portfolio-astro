@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import Link from "@ui/Link.astro";
 type Props = HTMLAttributes<"a">;
 
 const { href, ...props } = Astro.props;
@@ -10,11 +11,12 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
 ---
 
 <div class="relative isolate grid h-16 items-center">
-    <a
+    <Link
+        variant="link"
         href={href}
-        class={`text-sm ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+        class={`${isActive && "text-primary"}`}
         {...props}
     >
         <slot />
-    </a>
+    </Link>
 </div>
