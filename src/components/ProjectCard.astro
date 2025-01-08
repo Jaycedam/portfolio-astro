@@ -10,7 +10,7 @@ const { project } = Astro.props;
 ---
 
 <a
-    class="group relative aspect-[4/3] w-full overflow-hidden rounded-3xl transition-all duration-500 hover:scale-[102%]"
+    class="group relative aspect-video w-full overflow-hidden rounded-3xl transition-all duration-500 hover:scale-[102%]"
     href={`/projects/${project.id}`}
 >
     <div
@@ -23,7 +23,7 @@ const { project } = Astro.props;
     <Image
         src={project.data.image}
         alt=""
-        class="h-full w-full rounded-3xl object-cover transition-all duration-500 group-hover:scale-105"
+        class="h-full w-full rounded-3xl object-cover"
         transition:name={project.id}
         format="avif"
         widths={[380, 720, 1000, 1500, project.data.image.width]}
