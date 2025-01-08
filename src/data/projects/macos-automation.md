@@ -14,8 +14,8 @@ Opinionated automation shell scripts to set up macOS.
 
 - Installs [Homebrew](https://brew.sh).
 - Restores the current backup:
-  - Symlinks dotfiles from the repo to the home folder (.config/ and .zshrc).
-  - Installs packages listed in a [Brewfile](Brewfile) using [brew](https://brew.sh) and [mas](https://github.com/mas-cli/mas) (for App Store apps).
+    - Symlinks dotfiles from the repo to the home folder (.config/ and .zshrc).
+    - Installs packages listed in a [Brewfile](Brewfile) using [brew](https://brew.sh) and [mas](https://github.com/mas-cli/mas) (for App Store apps).
 - Changes some macOS default preferences; see the full list [here](modules/preferences.sh).
 
 ## Automated setup
