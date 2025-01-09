@@ -5,7 +5,7 @@ description: "Portfolio website created with Next.js App Router"
 date: "2023-04"
 featured: true
 tags: ["React", "Next.js", "Typescript"]
-image: "./images/portfolio-v2/preview.webp"
+image: "@assets/projects/portfolio-v2.webp"
 ---
 
 ## MDX Content
@@ -26,9 +26,5 @@ The Project details page, blog posts and admin forms all use [Intercepting Route
 
 ## Links
 
-<a href="https://github.com/Jaycedam/portfolio-next" target="_blank">
-  GitHub
-</a>
-<a href="https://portfolio-next-jaycedams-projects.vercel.app" target="_blank">
-  Live version
-</a>
+- [GitHub](https://github.com/Jaycedam/portfolio-next)
+- [Live version](https://portfolio-next-jaycedams-projects.vercel.app)

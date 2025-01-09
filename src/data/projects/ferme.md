@@ -5,11 +5,9 @@ description: "Demo e-commerce website"
 date: "2021-04"
 featured: "true"
 tags: ["Django", "Python"]
-image: "./images/ferme/preview.webp"
+image: "@assets/projects/ferme.webp"
 ---
 
 ## Links
 
-<a href="https://github.com/Jaycedam/ferme-website" target="_blank">
-  GitHub
-</a>
+- [GitHub](https://github.com/Jaycedam/ferme-website)

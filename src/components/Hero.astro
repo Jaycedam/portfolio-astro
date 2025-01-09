@@ -1,56 +1,63 @@
 ---
-import { Image } from "astro:assets";
-import hero from "@assets/profile.webp";
 import Link from "@ui/Link.astro";
+import ArrowRightIcon from "@assets/icons/arrow-right.svg";
 ---
 
 <section>
-    <div class="container flex flex-col items-center justify-center gap-8">
-        {/* graphic for hero  */}
-        <div class="relative">
-            <p
-                class="absolute -right-16 -top-4 z-10 whitespace-nowrap rounded-3xl bg-foreground/10 p-4 font-black text-foreground shadow backdrop-blur"
-            >
-                {"// Hello, World."}
+    <div class="mt-16 flex flex-col items-start justify-center gap-8 md:mt-36">
+        <!--text-->
+        <div class="space-y-2">
+            <p class="animate-fade font-bold text-muted-foreground">
+                // Hello, world.
             </p>
-
-            <Image
-                alt=""
-                width={500}
-                height={500}
-                src={hero}
-                class="max-w-[250px] rounded-full"
-                loading="eager"
-                format="avif"
-                quality="high"
-            />
+            <h1 class="title animate-fade-up-500">
+                I'm Jordan Cortés, a
+                <span
+                    class="animate-gradient bg-gradient-to-r from-orange-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent"
+                    >Software Developer
+                </span>
+                who believes in the power of simplicity;
+                <span class="text-muted-foreground"
+                    >reflected in my setup and the code I write.</span
+                >
+            </h1>
         </div>
 
-        <div class="animate-fade-up-500 space-y-12 text-center">
-            <div class="space-y-2">
-                <h1
-                    class="text-5xl font-black tracking-tight md:text-7xl lg:text-8xl"
+        <!--call to action-->
+        <div
+            class="flex w-full flex-col gap-8 sm:flex-row sm:items-center sm:justify-between"
+        >
+            <div class="flex gap-4">
+                <Link
+                    variant="outline"
+                    size="lg"
+                    href="https://github.com/Jaycedam"
                 >
-                    Jordan Cortés
-                    <br />
-                    Software{" "}
-                    <strong
-                        class="animate-gradient bg-gradient-to-r from-orange-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent"
-                    >
-                        Dev.
-                    </strong>
-                </h1>
+                    GitHub
+                </Link>
 
-                <h2 class="prose text-xl text-muted-foreground">
-                    Currently focused on full stack web development (Next.js,
-                    Typescript, Astro)
-                </h2>
+                <Link
+                    class="group space-x-2"
+                    href={"mailto:" + import.meta.env.EMAIL}
+                    size="lg"
+                >
+                    <span>Contact</span>
+                    <ArrowRightIcon
+                        class="transition-transform group-hover:translate-x-2"
+                        size={20}
+                    />
+                </Link>
             </div>
 
-            <!--todo add scroll animation -->
-            <Link href={"mailto:" + import.meta.env.EMAIL} size="lg">
-                Contact
-            </Link>
+            <p class="font-light text-muted-foreground">
+                My previous career was focused on Motion Graphics. You can see
+                my work on
+                <a
+                    class="text-primary"
+                    target="_blank"
+                    href="https://dribbble.com/jaycedam">Dribbble.</a
+                >
+            </p>
         </div>
     </div>
 </section>

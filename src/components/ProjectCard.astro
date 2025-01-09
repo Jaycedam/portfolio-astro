@@ -10,21 +10,23 @@ const { project } = Astro.props;
 ---
 
 <a
-    class="group relative aspect-video w-full overflow-hidden rounded-3xl transition-all duration-500 hover:scale-[102%]"
+    class="w-full overflow-hidden rounded-3xl border bg-gradient-to-tr from-zinc-50 to-zinc-100 transition-transform duration-500 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900"
     href={`/projects/${project.id}`}
 >
-    <div
-        class="absolute bottom-0 z-10 w-full animate-fade bg-gradient-to-t from-black/80 p-8 text-end text-zinc-50"
-    >
-        <p class="text-sm font-light">{project.data.area}</p>
-        <h2 class="text-xl font-bold">{project.data.title}</h2>
+    <!--text-->
+    <div class="space-y-4 p-8" transition:name={"text" + project.id}>
+        <div>
+            <p class="subheading">{project.data.area}</p>
+            <h2 class="heading">{project.data.title}</h2>
+        </div>
+        <p class="font-light">{project.data.description}</p>
     </div>
 
     <Image
         src={project.data.image}
         alt=""
-        class="h-full w-full rounded-3xl object-cover"
-        transition:name={project.id}
+        class="aspect-video w-full rounded-3xl object-cover"
+        transition:name={"image" + project.id}
         format="avif"
         widths={[380, 720, 1000, 1500, project.data.image.width]}
         sizes={`

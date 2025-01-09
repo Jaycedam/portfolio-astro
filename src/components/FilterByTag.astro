@@ -34,7 +34,6 @@ if (collection === "projects") {
                 All
                 {
                     collection === subpath && (
-                        // TODO: fix z-index issue on transition
                         // If the current path match the name of the tag, then render the link bg
                         <div
                             class="absolute inset-0 -z-10 rounded-3xl bg-primary"
@@ -56,7 +55,6 @@ if (collection === "projects") {
                         {tag.tag}
 
                         {tag.tag === subpath && (
-                            // TODO: fix z-index issue on transition
                             // If the current path match the name of the tag, then render the link bg
                             <div
                                 class="absolute inset-0 -z-10 rounded-3xl bg-primary"

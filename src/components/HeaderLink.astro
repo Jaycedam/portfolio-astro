@@ -1,6 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import Link from "@ui/Link.astro";
+import Link from "./ui/Link.astro";
 type Props = HTMLAttributes<"a">;
 
 const { href, ...props } = Astro.props;
@@ -14,7 +14,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
     <Link
         variant="link"
         href={href}
-        class={`${isActive && "text-primary"}`}
+        class={`relative px-0 ${isActive && "text-primary"}`}
         {...props}
     >
         <slot />

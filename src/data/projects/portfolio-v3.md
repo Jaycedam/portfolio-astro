@@ -5,7 +5,7 @@ description: "Here we go again, but this time with Astro and View Transitions."
 date: "2024-03"
 featured: true
 tags: ["Astro", "Typescript"]
-image: "./images/portfolio-v3/preview.png"
+image: "@assets/projects/portfolio-astro.webp"
 ---
 
 ## MDX Content
@@ -24,6 +24,4 @@ Since I only ship the necessary JS, the whole site is much faster than previous 
 
 ## Links
 
-<a href="https://github.com/Jaycedam/portfolio-astro" target="_blank">
-  GitHub
-</a>
+- [GitHub](https://github.com/Jaycedam/portfolio-astro)

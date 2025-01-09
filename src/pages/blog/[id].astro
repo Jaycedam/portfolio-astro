@@ -22,29 +22,12 @@ const { Content, headings } = await render(item);
 ---
 
 <Layout title={item.data.title + " | JC Portfolio"}>
-    <section class="space-y-20">
-        <!--TODO: add breadcrumbs-->
-
+    <section class="mx-auto max-w-4xl space-y-28">
         <!--image, title, desc and tags -->
         <div class="space-y-8">
-            <!--<Image-->
-            <!--    src={item.data.image}-->
-            <!--    alt=""-->
-            <!--    class="object-cover aspect-video w-full max-w-4xl mx-auto rounded-3xl"-->
-            <!--    transition:name={item.id}-->
-            <!--    loading="eager"-->
-            <!--    format="avif"-->
-            <!--    widths={[380, 720, 1000, 1500, item.data.image.width]}-->
-            <!--    sizes={`-->
-            <!--        (max-width: 380px) 380px, -->
-            <!--        (max-width: 720px) 720px, -->
-            <!--        (max-width: 1920px) 1000px, -->
-            <!--        (max-width: 2560px) 1500px, -->
-            <!--        ${item.data.image.width}px`}-->
-            <!--/>-->
-
-            <div class="mx-auto max-w-prose space-y-8">
-                <div class="space-y-4 text-center">
+            <div class="mx-auto space-y-8">
+                <!--text-->
+                <div class="space-y-4">
                     <h1 class="title" transition:name={"blog-title-" + item.id}>
                         {item.data.title}
                     </h1>
@@ -60,12 +43,10 @@ const { Content, headings } = await render(item);
                         <FormattedDate date={item.data.date} includeDay />
                     </p>
                 </div>
-
-                <!--<div class="flex text-muted-foreground gap-4">-->
-                <!--</div>-->
             </div>
 
-            <ul class="mx-auto flex max-w-prose flex-wrap justify-center gap-2">
+            <!--tags-->
+            <ul class="flex flex-wrap gap-2">
                 {
                     item.data.tags.map((tag) => (
                         <li>

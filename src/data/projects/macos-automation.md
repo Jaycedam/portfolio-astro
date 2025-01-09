@@ -5,7 +5,7 @@ description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
 featured: true
 tags: ["Bash", "macOS"]
-image: "./images/macos-automation/preview.webp"
+image: "@assets/projects/mac-setup.webp"
 ---
 
 ## Description
@@ -68,3 +68,7 @@ cd ~/Developer/mac-setup && sh backup.sh
 _If you install new Brew packages, just run **backup.sh** again to update the Brewfile._
 
 4. Make sure to change the USERNAME from the url in the [automated setup](#automated-setup) section to yours. Then push the changes to your repo.
+
+## Links
+
+- [GitHub](https://github.com/Jaycedam/mac-setup)

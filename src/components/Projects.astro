@@ -29,9 +29,7 @@ if (filter) {
 
     {!homepage && <FilterByTag collection="projects" />}
 
-    <div
-        class={`${homepage ? "md:grid-cols-2" : "md:grid-cols-3"} grid gap-8 `}
-    >
+    <div class="grid gap-8 md:grid-cols-2">
         {data.map((project) => <ProjectCard project={project} />)}
     </div>
 

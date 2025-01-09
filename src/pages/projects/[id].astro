@@ -4,7 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // font
 import { render } from "astro:content";
-import Link from "@/components/ui/Link.astro";
+import Link from "@components/ui/Link.astro";
 import Article from "@components/Article.astro";
 
 export async function getStaticPaths() {
@@ -24,39 +24,51 @@ const { Content, headings } = await render(item);
 ---
 
 <Layout title={item.data.title + "| JC Portfolio"}>
-    <section class="space-y-20">
+    <section class="mx-auto max-w-4xl space-y-28">
         <!--image, title, desc and tags -->
         <div class="space-y-8">
-            <Image
-                src={item.data.image}
-                alt=""
-                class="mx-auto aspect-video w-full max-w-4xl rounded-3xl object-cover"
-                transition:name={item.id}
-                loading="eager"
-                format="avif"
-                widths={[380, 720, 1000, 1500, item.data.image.width]}
-                sizes={`
+            <div class="mx-auto space-y-8">
+                <!--text section-->
+                <div transition:name={"text" + item.id} class="space-y-4">
+                    <div>
+                        <p class="subtitle">
+                            {item.data.area}
+                        </p>
+                        <h1 class="title">
+                            {item.data.title}
+                        </h1>
+                    </div>
+
+                    <p class="font-light">{item.data.description}</p>
+                </div>
+            </div>
+
+            <div
+                class="rounded-3xl bg-gradient-to-tr from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900"
+            >
+                <Image
+                    src={item.data.image}
+                    alt=""
+                    class="aspect-video w-full rounded-3xl object-cover"
+                    transition:name={"image" + item.id}
+                    loading="eager"
+                    format="avif"
+                    widths={[380, 720, 1000, 1500, item.data.image.width]}
+                    sizes={`
                     (max-width: 380px) 380px, 
                     (max-width: 720px) 720px, 
                     (max-width: 1920px) 1000px, 
                     (max-width: 2560px) 1500px, 
                     ${item.data.image.width}px`}
-            />
+                />
+            </div>
 
-            <div class="mx-auto max-w-prose space-y-8">
-                <div class="space-y-4 text-center">
-                    <h1 class="title">
-                        {item.data.title}
-                    </h1>
-
-                    <p class="subtitle">{item.data.description}</p>
-                </div>
-
-                <ul
-                    class="mx-auto flex max-w-prose flex-wrap justify-center gap-2"
-                >
-                    {
-                        item.data.tags.map((tag) => (
+            <!--tags-->
+            <!--TODO: refactor this-->
+            <ul class="flex flex-wrap items-center gap-2">
+                {
+                    item.data.tags.map((tag) => (
+                        <>
                             <li>
                                 <Link
                                     variant="secondary"
@@ -66,10 +78,10 @@ const { Content, headings } = await render(item);
                                     {tag}
                                 </Link>
                             </li>
-                        ))
-                    }
-                </ul>
-            </div>
+                        </>
+                    ))
+                }
+            </ul>
         </div>
 
         <Article headings={headings}>
