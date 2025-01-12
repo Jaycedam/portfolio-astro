@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import FilterByTag from "@components/FilterByTag.astro";
-import FormattedDate from "@components/FormattedDate.astro";
 import Link from "@ui/Link.astro";
+import BlogCard from "@components/BlogCard.astro";
 
 const { homepage, title, filter } = Astro.props;
 
@@ -34,36 +34,8 @@ if (filter) {
 
     {!homepage && <FilterByTag collection="blog" />}
 
-    <ol class="grid gap-8 md:grid-cols-2">
-        {
-            data.map((item) => (
-                <li transition:name={"blog-card-" + item.id}>
-                    <div class="space-y-1">
-                        <a
-                            class="text-xl font-bold transition-all"
-                            href={`/blog/${item.id}`}
-                            transition:name={"blog-title-" + item.id}
-                        >
-                            {item.data.title}
-                        </a>
-
-                        <p
-                            class="text-muted-foreground"
-                            transition:name={"blog-desc-" + item.id}
-                        >
-                            {item.data.description}
-                        </p>
-
-                        <div
-                            class="text-muted-foreground"
-                            transition:name={"blog-date-" + item.id}
-                        >
-                            <FormattedDate date={item.data.date} includeDay />
-                        </div>
-                    </div>
-                </li>
-            ))
-        }
+    <ol class="grid gap-16 md:grid-cols-2">
+        {data.map((item) => <BlogCard item={item} />)}
     </ol>
 
     <!--if this component is rendered on the homepage, then render the link to all projects-->
