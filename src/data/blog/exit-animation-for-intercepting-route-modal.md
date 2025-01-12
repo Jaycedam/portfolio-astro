@@ -1,9 +1,18 @@
 ---
-title: "Add closing animation to Intercepting Route modal using Next.js"
-description: ""
+title: "Exit Animation for Intercepting Route Modal (Next.js)"
+description: "This feature isn’t supported in Next.js, but we can use the modal state to trigger route changes after the animation ends."
 date: "2024-03-7"
+updatedDate: "2025-01-12"
 tags: ["Next.js"]
 ---
+
+## Update
+
+It looks like React just merged support for the View Transitions API, which provides an easy way to handle transitions for your application since it's native to the browser. You can check out the PR [here](https://github.com/facebook/react/pull/31975), and find more info about the API [here](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API).
+
+This solves the issue of exit animations; _however_, it will likely take some time before it's released in the stable version of Next.js. In the meantime, you can still use the solution below.
+
+## The issue
 
 Since Next.js doesn't support exit animations yet ([Relevant issue](https://github.com/vercel/next.js/issues/49279)), we need to manually create the animation event.
 
@@ -41,7 +50,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Where we just call the **router.back()** to close the modal.
+Where we just call the **router.back()** to close the modal by switching the URL.
 
 ## Adding a closing animation
 
