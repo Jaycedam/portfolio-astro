@@ -5,7 +5,7 @@ description: "Portfolio website created with React (CRA)"
 date: "2022-04"
 featured: false
 tags: ["React", "Django"]
-image: "@assets/projects/portfolio-v1.webp"
+image: "@assets/projects/portfolio-v1/preview.webp"
 ---
 
 ## Links

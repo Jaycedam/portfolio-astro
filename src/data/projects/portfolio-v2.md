@@ -5,7 +5,7 @@ description: "Portfolio website created with Next.js App Router"
 date: "2023-04"
 featured: true
 tags: ["React", "Next.js", "Typescript"]
-image: "@assets/projects/portfolio-v2.webp"
+image: "@assets/projects/portfolio-v2/preview.webp"
 ---
 
 ## MDX Content
