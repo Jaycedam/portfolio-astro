@@ -30,7 +30,7 @@ if (filter) {
     {!homepage && <FilterByTag collection="projects" />}
 
     <div class="grid gap-8 md:grid-cols-2">
-        {data.map((project) => <ProjectCard project={project} />)}
+        {data.map((project) => <ProjectCard item={project} />)}
     </div>
 
     <!--if this component is rendered on the homepage, then render the link to all projects-->

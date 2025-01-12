@@ -3,10 +3,10 @@ import type { Project } from "@lib/types";
 import { Image } from "astro:assets";
 
 type Props = {
-    project: Project;
+    item: Project;
 };
 
-const { project } = Astro.props;
+const { item: project } = Astro.props;
 ---
 
 <a
