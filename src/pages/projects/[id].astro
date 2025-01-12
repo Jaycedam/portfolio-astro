@@ -4,8 +4,8 @@ import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // font
 import { render } from "astro:content";
-import Link from "@components/ui/Link.astro";
 import Article from "@components/Article.astro";
+import Tags from "@components/Tags.astro";
 
 export async function getStaticPaths() {
     const item = await getCollection("projects");
@@ -64,24 +64,7 @@ const { Content, headings } = await render(item);
             </div>
 
             <!--tags-->
-            <!--TODO: refactor this-->
-            <ul class="flex flex-wrap items-center gap-2">
-                {
-                    item.data.tags.map((tag) => (
-                        <>
-                            <li>
-                                <Link
-                                    variant="secondary"
-                                    size="sm"
-                                    href={`/projects/tag/${tag}`}
-                                >
-                                    {tag}
-                                </Link>
-                            </li>
-                        </>
-                    ))
-                }
-            </ul>
+            <Tags tags={item.data.tags} />
         </div>
 
         <Article headings={headings}>

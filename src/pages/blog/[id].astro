@@ -3,8 +3,8 @@ import FormattedDate from "@/components/FormattedDate.astro";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // code font
-import Link from "@/components/ui/Link.astro";
 import Article from "@components/Article.astro";
+import Tags from "@components/Tags.astro";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog");
@@ -26,41 +26,35 @@ const { Content, headings } = await render(item);
         <!--image, title, desc and tags -->
         <div class="space-y-8">
             <div class="mx-auto space-y-8">
-                <!--text-->
-                <div class="space-y-4">
-                    <h1 class="title" transition:name={"blog-title-" + item.id}>
-                        {item.data.title}
-                    </h1>
+                <!--text section-->
+                <div transition:name={"text" + item.id} class="space-y-4">
+                    <div>
+                        <p
+                            class="subtitle"
+                            transition:name={"blog-date-" + item.id}
+                        >
+                            <FormattedDate date={item.data.date} includeDay />
+                        </p>
+
+                        <h1
+                            class="title"
+                            transition:name={"blog-title-" + item.id}
+                        >
+                            {item.data.title}
+                        </h1>
+                    </div>
 
                     <p
-                        class="subtitle"
+                        class="font-light"
                         transition:name={"blog-desc-" + item.id}
                     >
                         {item.data.description}
-                    </p>
-
-                    <p transition:name={"blog-date-" + item.id}>
-                        <FormattedDate date={item.data.date} includeDay />
                     </p>
                 </div>
             </div>
 
             <!--tags-->
-            <ul class="flex flex-wrap gap-2">
-                {
-                    item.data.tags.map((tag) => (
-                        <li>
-                            <Link
-                                variant="secondary"
-                                size="sm"
-                                href={`/blog/tag/${tag}`}
-                            >
-                                {tag}
-                            </Link>
-                        </li>
-                    ))
-                }
-            </ul>
+            <Tags tags={item.data.tags} />
         </div>
 
         <!--markdown content -->
