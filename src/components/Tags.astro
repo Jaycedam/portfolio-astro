@@ -3,16 +3,21 @@ import Link from "@ui/Link.astro";
 
 type Props = {
     tags: string[];
+    type: "blog" | "projects";
 };
 
-const { tags } = Astro.props;
+const { tags, type } = Astro.props;
 ---
 
 <ul class="flex flex-wrap gap-2">
     {
         tags.map((tag) => (
             <li>
-                <Link variant="secondary" size="sm" href={`/blog/tag/${tag}`}>
+                <Link
+                    variant="secondary"
+                    size="sm"
+                    href={`/${type}/tag/${tag}`}
+                >
                     {tag}
                 </Link>
             </li>
