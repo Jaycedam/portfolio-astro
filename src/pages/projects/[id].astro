@@ -29,17 +29,28 @@ const { Content, headings } = await render(item);
         <div class="space-y-8">
             <div class="mx-auto space-y-8">
                 <!--text section-->
-                <div transition:name={"text" + item.id} class="space-y-4">
+                <div class="space-y-4">
                     <div>
-                        <p class="subtitle">
+                        <p
+                            transition:name={"project-area" + item.id}
+                            class="subtitle"
+                        >
                             {item.data.area}
                         </p>
-                        <h1 class="title">
+                        <h1
+                            transition:name={"project-title" + item.id}
+                            class="title"
+                        >
                             {item.data.title}
                         </h1>
                     </div>
 
-                    <p class="font-light">{item.data.description}</p>
+                    <p
+                        transition:name={"project-desc" + item.id}
+                        class="font-light"
+                    >
+                        {item.data.description}
+                    </p>
                 </div>
             </div>
 
@@ -50,7 +61,7 @@ const { Content, headings } = await render(item);
                     src={item.data.image}
                     alt=""
                     class="aspect-video w-full rounded-3xl object-cover"
-                    transition:name={"image" + item.id}
+                    transition:name={"project-image" + item.id}
                     loading="eager"
                     format="avif"
                     widths={[380, 720, 1000, 1500, item.data.image.width]}

@@ -6,35 +6,41 @@ type Props = {
     item: Project;
 };
 
-const { item: project } = Astro.props;
+const { item } = Astro.props;
 ---
 
 <a
-    class="w-full overflow-hidden rounded-3xl border bg-gradient-to-tr from-zinc-50 to-zinc-100 transition-transform duration-500 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900"
-    href={`/projects/${project.id}`}
+    href={`/projects/${item.id}`}
+    class="w-full rounded-3xl border bg-gradient-to-tr from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900"
 >
     <!--text-->
-    <div class="space-y-4 p-8" transition:name={"text" + project.id}>
+    <div class="space-y-4 p-8">
         <div>
-            <p class="subheading">{project.data.area}</p>
-            <h2 class="heading">{project.data.title}</h2>
+            <p transition:name={"project-area" + item.id} class="subheading">
+                {item.data.area}
+            </p>
+            <h2 transition:name={"project-title" + item.id} class="heading">
+                {item.data.title}
+            </h2>
         </div>
-        <p class="font-light">{project.data.description}</p>
+        <p transition:name={"project-desc" + item.id} class="font-light">
+            {item.data.description}
+        </p>
     </div>
 
     <Image
-        src={project.data.image}
+        src={item.data.image}
         alt=""
         class="aspect-video w-full rounded-3xl object-cover"
-        transition:name={"image" + project.id}
+        transition:name={"project-image" + item.id}
         format="avif"
-        widths={[380, 720, 1000, 1500, project.data.image.width]}
+        widths={[380, 720, 1000, 1500, item.data.image.width]}
         sizes={`
           (max-width: 380px) 380px, 
           (max-width: 720px) 720px, 
           (max-width: 1920px) 1000px, 
           (max-width: 2560px) 1500px, 
-          ${project.data.image.width}px`}
+          ${item.data.image.width}px`}
     />
     <span class="sr-only">Project details</span>
 </a>
