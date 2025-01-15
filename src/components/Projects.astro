@@ -1,6 +1,6 @@
 ---
 import FilterByTag from "@components/FilterByTag.astro";
-import { filterProjectByTag, getProjects } from "@lib/project-collection";
+import { filterProjectsByTag, getProjects } from "@lib/project-collection";
 import ProjectCard from "@components/ProjectCard.astro";
 import Link from "@ui/Link.astro";
 
@@ -17,7 +17,7 @@ let data = await getProjects(homepage);
 
 // if a filter is passed as prop, then filter
 if (filter) {
-    data = filterProjectByTag(data, filter);
+    data = filterProjectsByTag(data, filter);
 }
 ---
 
