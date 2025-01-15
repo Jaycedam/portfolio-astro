@@ -1,6 +1,6 @@
 ---
 title: "Portfolio V3"
-area: "Website"
+category: "Website"
 description: "Here we go again, but this time with Astro and View Transitions."
 date: "2024-03"
 featured: true

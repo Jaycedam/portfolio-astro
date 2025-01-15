@@ -17,8 +17,11 @@ const { item } = Astro.props;
     <!--text-->
     <div class="space-y-4 p-8">
         <div>
-            <p transition:name={"project-area" + item.id} class="subheading">
-                {item.data.area}
+            <p
+                transition:name={"project-category" + item.id}
+                class="subheading"
+            >
+                {item.data.category}
             </p>
             <h2 transition:name={"project-title" + item.id} class="heading">
                 {item.data.title}

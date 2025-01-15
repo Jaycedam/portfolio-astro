@@ -29,8 +29,11 @@ const { Content } = await render(item);
         <!--header title-->
         <div class="space-y-4">
             <div>
-                <p transition:name={"project-area" + item.id} class="subtitle">
-                    {item.data.area}
+                <p
+                    transition:name={"project-category" + item.id}
+                    class="subtitle"
+                >
+                    {item.data.category}
                 </p>
                 <h1 transition:name={"project-title" + item.id} class="title">
                     {item.data.title}

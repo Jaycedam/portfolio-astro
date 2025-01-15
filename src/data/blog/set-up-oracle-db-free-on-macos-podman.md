@@ -1,5 +1,6 @@
 ---
 title: "Set up Oracle DB Free container on macOS with Podman"
+category: "Guides"
 description: "The container fails on a default installation, and the logs don't help debugging. Let's fix that."
 date: "2025-01-15"
 tags: ["OracleDB", "Podman", "macOS"]

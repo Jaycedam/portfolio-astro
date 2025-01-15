@@ -1,6 +1,6 @@
 ---
 title: "MacOS Setup"
-area: "CLI"
+category: "CLI"
 description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
 featured: true

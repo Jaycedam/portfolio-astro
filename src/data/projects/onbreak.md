@@ -1,6 +1,6 @@
 ---
 title: "Onbreak"
-area: "Desktop App"
+category: "Desktop App"
 description: "Demo WPF application for clients and contracts management"
 date: "2020-05"
 featured: false

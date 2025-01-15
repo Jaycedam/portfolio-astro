@@ -1,10 +1,10 @@
 ---
 title: "Portfolio V2"
-area: "Website"
+category: "Website"
 description: "Portfolio website created with Next.js App Router"
 date: "2023-04"
 featured: true
-tags: ["React", "Next.js", "Typescript"]
+tags: ["Typescript", "React", "Next.js", "Prisma", "MySQL"]
 image: "@assets/projects/portfolio-v2/preview.webp"
 ---
 

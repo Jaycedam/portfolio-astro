@@ -7,7 +7,7 @@ export const projectsCollection = defineCollection({
     schema: ({ image }) =>
         z.object({
             title: z.string(),
-            area: z.string(),
+            category: z.string(),
             description: z.string(),
             // Transform string to Date object
             date: z.coerce.date(),
@@ -22,6 +22,7 @@ export const blogCollection = defineCollection({
     // Type-check frontmatter using a schema
     schema: z.object({
         title: z.string(),
+        category: z.string(),
         description: z.string(),
         // Transform string to Date object
         date: z.coerce.date(),

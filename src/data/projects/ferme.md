@@ -1,10 +1,10 @@
 ---
 title: "Ferme"
-area: "Website"
+category: "Website"
 description: "Demo e-commerce website"
 date: "2021-04"
 featured: "true"
-tags: ["Django", "Python"]
+tags: ["Django", "OracleDB", "Bootstrap"]
 image: "@assets/projects/ferme/preview.webp"
 ---
 
