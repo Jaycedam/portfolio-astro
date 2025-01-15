@@ -5,8 +5,6 @@ import { type CollectionEntry, getCollection, render } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // code font
 import Article from "@components/Article.astro";
 import Tags from "@components/Tags.astro";
-import { Image } from "astro:assets";
-import placeholder from "@assets/blog/placeholder.png";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog");
@@ -55,24 +53,6 @@ const { Content } = await render(item);
             </p>
             <!--tags-->
             <Tags tags={item.data.tags} type="blog" />
-        </div>
-
-        <!--image-->
-        <div class="rounded-3xl">
-            <Image
-                src={item.data.image ? item.data.image : placeholder}
-                alt=""
-                class="aspect-video w-full rounded-3xl object-cover"
-                transition:name={"project-image" + item.id}
-                loading="eager"
-                format="avif"
-                widths={[640, 768, 1024, 1500]}
-                sizes={`
-                    (max-width: 640px) 640px, 
-                    (max-width: 768px) 768px, 
-                    (max-width: 1024px) 1024px, 
-                    (max-width: 1280px) 1500px`}
-            />
         </div>
     </section>
 
