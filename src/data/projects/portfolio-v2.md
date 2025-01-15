@@ -4,7 +4,7 @@ category: "Website"
 description: "Portfolio website created with Next.js App Router"
 date: "2023-04"
 featured: true
-tags: ["Typescript", "React", "Next.js", "Prisma", "MySQL"]
+tags: ["Next.js", "TailwindCSS", "Prisma", "MySQL"]
 image: "@assets/projects/portfolio-v2/preview.webp"
 ---
 
