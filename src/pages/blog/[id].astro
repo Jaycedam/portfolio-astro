@@ -5,6 +5,8 @@ import { type CollectionEntry, getCollection, render } from "astro:content";
 import "@fontsource-variable/jetbrains-mono"; // code font
 import Article from "@components/Article.astro";
 import Tags from "@components/Tags.astro";
+import { Image } from "astro:assets";
+import placeholder from "@assets/blog/placeholder.png";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog");
@@ -18,57 +20,64 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const item = Astro.props;
-const { Content, headings } = await render(item);
+const { Content } = await render(item);
 ---
 
 <Layout title={item.data.title + " | JC Portfolio"}>
-    <section class="mx-auto max-w-4xl space-y-28">
-        <!--image, title, desc and tags -->
-        <div class="space-y-8">
-            <div class="mx-auto space-y-8">
-                <!--text section-->
-                <div class="space-y-4">
-                    <div>
-                        <h1
-                            class="title"
-                            transition:name={"blog-title-" + item.id}
-                        >
-                            {item.data.title}
-                        </h1>
-                    </div>
+    <section class="mx-auto max-w-4xl space-y-8">
+        <!--header title-->
+        <div class="space-y-4">
+            <h1 class="title" transition:name={"blog-title-" + item.id}>
+                {item.data.title}
+            </h1>
 
-                    <p
-                        class="font-light text-muted-foreground"
-                        transition:name={"blog-desc-" + item.id}
-                    >
-                        {item.data.description}
-                    </p>
+            <p
+                class="font-light text-muted-foreground"
+                transition:name={"blog-desc-" + item.id}
+            >
+                {item.data.description}
+            </p>
 
-                    <!--date-->
-                    <p class="text-sm" transition:name={"blog-date-" + item.id}>
-                        <FormattedDate date={item.data.date} includeDay />
-                        {
-                            item.data.updatedDate && (
-                                <>
-                                    - Updated on{" "}
-                                    <FormattedDate
-                                        date={item.data.updatedDate}
-                                        includeDay
-                                    />
-                                </>
-                            )
-                        }
-                    </p>
-                </div>
+            <!--date-->
+            <p class="text-sm" transition:name={"blog-date-" + item.id}>
+                <FormattedDate date={item.data.date} includeDay />
+                {
+                    item.data.updatedDate && (
+                        <>
+                            - Updated on{" "}
+                            <FormattedDate
+                                date={item.data.updatedDate}
+                                includeDay
+                            />
+                        </>
+                    )
+                }
+            </p>
+            <!--tags-->
+            <Tags tags={item.data.tags} type="blog" />
+        </div>
 
-                <!--tags-->
-                <Tags tags={item.data.tags} type="blog" />
-            </div>
-
-            <!--markdown content -->
-            <Article headings={headings}>
-                <Content />
-            </Article>
+        <!--image-->
+        <div class="rounded-3xl">
+            <Image
+                src={item.data.image ? item.data.image : placeholder}
+                alt=""
+                class="aspect-video w-full rounded-3xl object-cover"
+                transition:name={"project-image" + item.id}
+                loading="eager"
+                format="avif"
+                widths={[640, 768, 1024, 1500]}
+                sizes={`
+                    (max-width: 640px) 640px, 
+                    (max-width: 768px) 768px, 
+                    (max-width: 1024px) 1024px, 
+                    (max-width: 1280px) 1500px`}
+            />
         </div>
     </section>
+
+    <!--markdown content -->
+    <Article>
+        <Content />
+    </Article>
 </Layout>

@@ -6,6 +6,7 @@ import "@fontsource-variable/jetbrains-mono"; // font
 import { render } from "astro:content";
 import Article from "@components/Article.astro";
 import Tags from "@components/Tags.astro";
+import placeholder from "@assets/projects/placeholder.webp";
 
 export async function getStaticPaths() {
     const item = await getCollection("projects");
@@ -20,66 +21,52 @@ type Props = CollectionEntry<"projects">;
 
 const item = Astro.props;
 
-const { Content, headings } = await render(item);
+const { Content } = await render(item);
 ---
 
 <Layout title={item.data.title + "| JC Portfolio"}>
-    <section class="mx-auto max-w-4xl space-y-28">
-        <!--image, title, desc and tags -->
-        <div class="space-y-8">
-            <div class="mx-auto space-y-8">
-                <!--text section-->
-                <div class="space-y-4">
-                    <div>
-                        <p
-                            transition:name={"project-area" + item.id}
-                            class="subtitle"
-                        >
-                            {item.data.area}
-                        </p>
-                        <h1
-                            transition:name={"project-title" + item.id}
-                            class="title"
-                        >
-                            {item.data.title}
-                        </h1>
-                    </div>
-
-                    <p
-                        transition:name={"project-desc" + item.id}
-                        class="font-light"
-                    >
-                        {item.data.description}
-                    </p>
-                </div>
+    <section class="mx-auto max-w-4xl space-y-8">
+        <!--header title-->
+        <div class="space-y-4">
+            <div>
+                <p transition:name={"project-area" + item.id} class="subtitle">
+                    {item.data.area}
+                </p>
+                <h1 transition:name={"project-title" + item.id} class="title">
+                    {item.data.title}
+                </h1>
             </div>
 
-            <div
-                class="rounded-3xl bg-gradient-to-tr from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900"
-            >
-                <Image
-                    src={item.data.image}
-                    alt=""
-                    class="aspect-video w-full rounded-3xl object-cover"
-                    transition:name={"project-image" + item.id}
-                    loading="eager"
-                    format="avif"
-                    widths={[380, 720, 1000, 1500, item.data.image.width]}
-                    sizes={`
-                    (max-width: 380px) 380px, 
-                    (max-width: 720px) 720px, 
-                    (max-width: 1920px) 1000px, 
-                    (max-width: 2560px) 1500px, 
-                    ${item.data.image.width}px`}
-                />
-            </div>
+            <p transition:name={"project-desc" + item.id} class="font-light">
+                {item.data.description}
+            </p>
 
             <!--tags-->
             <Tags tags={item.data.tags} type="projects" />
         </div>
 
-        <Article headings={headings}>
-            <Content />
-        </Article>
+        <!--image-->
+        <div
+            class="rounded-3xl bg-gradient-to-tr from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900"
+        >
+            <Image
+                src={item.data.image ? item.data.image : placeholder}
+                alt=""
+                class="aspect-video w-full rounded-3xl object-cover"
+                transition:name={"project-image" + item.id}
+                loading="eager"
+                format="avif"
+                widths={[640, 768, 1024, 1500]}
+                sizes={`
+                    (max-width: 640px) 640px, 
+                    (max-width: 768px) 768px, 
+                    (max-width: 1024px) 1024px, 
+                    (max-width: 1280px) 1500px`}
+            />
+        </div>
     </section>
+
+    <Article>
+        <Content />
+    </Article>
 </Layout>
