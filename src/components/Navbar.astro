@@ -22,39 +22,43 @@ const navLinks: Navlinks[] = [
 ];
 ---
 
-<header
-    class="container flex h-20 items-center justify-between overflow-hidden"
->
-    <nav>
-        <ul class="flex items-center gap-4 sm:gap-8">
-            <li>
-                <a class="px-4 py-2" href="/">
-                    <Logo size={35} />
-                    <p class="sr-only">Logo</p>
-                </a>
-            </li>
-            {
-                navLinks.map((link) => (
-                    <li>
-                        <HeaderLink href={link.href}>{link.label}</HeaderLink>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
+<header class="border-b">
+    <div
+        class="container flex h-20 items-center justify-between overflow-hidden"
+    >
+        <nav>
+            <ul class="flex items-center gap-4 sm:gap-8">
+                <li>
+                    <a class="px-4 py-2" href="/">
+                        <Logo size={35} />
+                        <p class="sr-only">Logo</p>
+                    </a>
+                </li>
+                {
+                    navLinks.map((link) => (
+                        <li>
+                            <HeaderLink href={link.href}>
+                                {link.label}
+                            </HeaderLink>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
 
-    <ul class="flex items-center gap-2 sm:gap-2">
-        <li>
-            <ThemeToggle transition:persist />
-        </li>
-        <li>
-            <Link
-                size="icon"
-                variant="ghost"
-                href={"mailto:" + import.meta.env.EMAIL}
-            >
-                <EmailIcon size={20} />
-            </Link>
-        </li>
-    </ul>
+        <ul class="flex items-center gap-2 sm:gap-2">
+            <li>
+                <ThemeToggle transition:persist />
+            </li>
+            <li>
+                <Link
+                    size="icon"
+                    variant="ghost"
+                    href={"mailto:" + import.meta.env.EMAIL}
+                >
+                    <EmailIcon size={20} />
+                </Link>
+            </li>
+        </ul>
+    </div>
 </header>

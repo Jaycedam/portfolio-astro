@@ -12,19 +12,19 @@ const { item } = Astro.props;
 
 <a
     href={`/projects/${item.id}`}
-    class="w-full rounded-3xl border bg-gradient-to-tr from-zinc-50 to-zinc-100 transition-transform duration-300 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900"
+    class="w-full rounded-3xl border bg-gradient-to-tr from-zinc-50 to-zinc-100 transition-transform duration-500 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900"
 >
     <!--text-->
     <div class="space-y-4 p-8">
-        <div>
-            <p transition:name={"project-area" + item.id} class="subheading">
-                {item.data.area}
+        <div class="space-y-2">
+            <p transition:name={"project-category" + item.id}>
+                {item.data.category}
             </p>
-            <h2 transition:name={"project-title" + item.id} class="heading">
+            <h3 transition:name={"project-title" + item.id}>
                 {item.data.title}
-            </h2>
+            </h3>
         </div>
-        <p transition:name={"project-desc" + item.id} class="font-light">
+        <p transition:name={"project-desc" + item.id}>
             {item.data.description}
         </p>
     </div>

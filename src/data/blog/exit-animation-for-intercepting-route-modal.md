@@ -1,9 +1,10 @@
 ---
 title: "Exit Animation for Intercepting Route Modal (Next.js)"
+category: "Guides"
 description: "This feature isn’t supported in Next.js, but we can use the modal state to trigger route changes after the animation ends."
 date: "2024-03-7"
 updatedDate: "2025-01-12"
-tags: ["Next.js"]
+tags: ["nextjs"]
 ---
 
 ## Update

@@ -16,7 +16,7 @@ export async function getProjects(homepage: boolean) {
     return data;
 }
 
-export function filterProjectByTag(projects: Project[], tag: string) {
+export function filterProjectsByTag(projects: Project[], tag: string) {
     return projects.filter((project) => project.data.tags.includes(tag));
 }
 

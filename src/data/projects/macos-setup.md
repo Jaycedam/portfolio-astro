@@ -1,10 +1,10 @@
 ---
 title: "MacOS Setup"
-area: "CLI"
+category: "CLI"
 description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
 featured: true
-tags: ["Bash", "macOS"]
+tags: ["bash"]
 image: "@assets/projects/macos-setup/preview.webp"
 ---
 

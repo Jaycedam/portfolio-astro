@@ -24,25 +24,25 @@ const item = Astro.props;
 const { Content } = await render(item);
 ---
 
-<Layout title={item.data.title + "| JC Portfolio"}>
-    <section class="mx-auto max-w-4xl space-y-8">
+<Layout title={item.data.title + " | JC Portfolio"}>
+    <section class="mx-auto max-w-6xl space-y-16">
         <!--header title-->
-        <div class="space-y-4">
-            <div>
-                <p transition:name={"project-area" + item.id} class="subtitle">
-                    {item.data.area}
-                </p>
-                <h1 transition:name={"project-title" + item.id} class="title">
-                    {item.data.title}
-                </h1>
-            </div>
+        <div class="space-y-8 text-center">
+            <p transition:name={"project-category" + item.id}>
+                {item.data.category}
+            </p>
+            <h1 transition:name={"project-title" + item.id} class="title">
+                {item.data.title}
+            </h1>
 
-            <p transition:name={"project-desc" + item.id} class="font-light">
+            <p transition:name={"project-desc" + item.id}>
                 {item.data.description}
             </p>
 
             <!--tags-->
-            <Tags tags={item.data.tags} type="projects" />
+            <div class="grid justify-center">
+                <Tags tags={item.data.tags} type="projects" />
+            </div>
         </div>
 
         <!--image-->

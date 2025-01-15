@@ -75,24 +75,25 @@
         @apply bg-background text-foreground;
     }
 
-    section {
-        @apply scroll-mt-16;
+    h1 {
+        @apply text-6xl font-bold uppercase lg:text-7xl 2xl:text-8xl;
     }
-
-    .title {
+    h2 {
         @apply text-5xl font-bold;
     }
-
-    .subtitle {
-        @apply text-xl font-bold text-muted-foreground;
+    h3 {
+        @apply text-3xl font-bold;
+    }
+    h4 {
+        @apply leading-6;
     }
 
-    .heading {
-        @apply text-3xl font-bold capitalize;
+    p {
+        @apply text-lg text-zinc-600 dark:text-zinc-400;
     }
 
-    .subheading {
-        @apply font-light text-muted-foreground;
+    section {
+        @apply scroll-mt-16;
     }
 
     .fade-left {
@@ -137,7 +138,7 @@
     background: rgb(39, 39, 42);
     background: radial-gradient(
         circle,
-        rgba(39, 39, 42, 1) 0%,
-        rgba(24, 24, 27, 1) 100%
+        rgb(24, 24, 27, 1) 100%,
+        rgb(9, 9, 11, 1) 0%
     );
 }
