@@ -1,5 +1,6 @@
 ---
 import Link from "@ui/Link.astro";
+import TagsIcon from "@assets/icons/tags.svg";
 
 type Props = {
     tags: string[];
@@ -9,7 +10,10 @@ type Props = {
 const { tags, type } = Astro.props;
 ---
 
-<ul class="flex flex-wrap gap-2">
+<ul class="flex flex-wrap items-center gap-2">
+    <li>
+        <TagsIcon size={30} />
+    </li>
     {
         tags.map((tag) => (
             <li>
@@ -18,7 +22,7 @@ const { tags, type } = Astro.props;
                     size="sm"
                     href={`/${type}/tag/${tag}`}
                 >
-                    {tag}
+                    #{tag}
                 </Link>
             </li>
         ))

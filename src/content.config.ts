@@ -20,15 +20,17 @@ export const projectsCollection = defineCollection({
 export const blogCollection = defineCollection({
     loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/data/blog" }),
     // Type-check frontmatter using a schema
-    schema: z.object({
-        title: z.string(),
-        category: z.string(),
-        description: z.string(),
-        // Transform string to Date object
-        date: z.coerce.date(),
-        updatedDate: z.coerce.date().optional(),
-        tags: z.string().array(),
-    }),
+    schema: ({ image }) =>
+        z.object({
+            title: z.string(),
+            category: z.string(),
+            description: z.string(),
+            // Transform string to Date object
+            date: z.coerce.date(),
+            updatedDate: z.coerce.date().optional(),
+            tags: z.string().array(),
+            image: image().optional(),
+        }),
 });
 
 export const collections = {

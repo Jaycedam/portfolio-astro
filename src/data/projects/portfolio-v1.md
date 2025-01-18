@@ -4,7 +4,7 @@ category: "Website"
 description: "Portfolio website created with React (CRA)"
 date: "2022-04"
 featured: false
-tags: ["React", "Django", "PostgreSQL"]
+tags: ["react", "django", "postgresql"]
 image: "@assets/projects/portfolio-v1/preview.webp"
 ---
 

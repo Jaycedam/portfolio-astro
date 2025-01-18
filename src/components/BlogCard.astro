@@ -1,6 +1,9 @@
 ---
 import type { Blog } from "@lib/types";
 import FormattedDate from "@components/FormattedDate.astro";
+import placeholder from "@assets/blog/placeholder.webp";
+import { Image } from "astro:assets";
+import ArrowRightIcon from "@assets/icons/arrow-right.svg";
 
 type Props = {
     item: Blog;
@@ -9,33 +12,44 @@ type Props = {
 const { item } = Astro.props;
 ---
 
-<li>
-    <a class="group relative h-auto w-full space-y-2" href={`/blog/${item.id}`}>
-        <h3
-            transition:name={"blog-title-" + item.id}
-            class="text-2xl font-bold"
-        >
+<div class="flex flex-col gap-4">
+    <p class="text-base font-light" transition:name={"blog-date-" + item.id}>
+        <FormattedDate date={item.data.date} includeDay />
+        {
+            item.data.updatedDate && (
+                <>
+                    - Updated on{" "}
+                    <FormattedDate date={item.data.updatedDate} includeDay />
+                </>
+            )
+        }
+    </p>
+    <h3 transition:name={"blog-title-" + item.id}>
+        <a href={`/blog/${item.id}`}>
             {item.data.title}
-        </h3>
-        <p
-            transition:name={"blog-desc-" + item.id}
-            class="font-light text-muted-foreground"
-        >
-            {item.data.description}
-        </p>
-        <p transition:name={"blog-date-" + item.id} class="text-sm">
-            <FormattedDate date={item.data.date} includeDay />
-            {
-                item.data.updatedDate && (
-                    <>
-                        - Updated on{" "}
-                        <FormattedDate
-                            date={item.data.updatedDate}
-                            includeDay
-                        />
-                    </>
-                )
-            }
-        </p>
+        </a>
+    </h3>
+
+    <a
+        class="aspect-video overflow-hidden rounded-xl"
+        href={`/blog/${item.id}`}
+    >
+        <Image
+            src={item.data.image ? item.data.image : placeholder}
+            alt=""
+            class="aspect-video w-full rounded-xl object-cover"
+            transition:name={"project-image" + item.id}
+            format="avif"
+        />
     </a>
-</li>
+    <!--<p>{item.data.category}</p>-->
+    <p transition:name={"blog-desc-" + item.id}>
+        {item.data.description}
+    </p>
+
+    <a class="group inline-flex items-center gap-2" href={`/blog/${item.id}`}>
+        Read more
+
+        <ArrowRightIcon size={20} />
+    </a>
+</div>

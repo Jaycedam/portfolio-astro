@@ -4,7 +4,7 @@ category: "CLI"
 description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
 featured: true
-tags: ["Bash"]
+tags: ["bash"]
 image: "@assets/projects/macos-setup/preview.webp"
 ---
 

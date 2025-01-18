@@ -3,6 +3,7 @@ import { getPostsTags } from "@lib/blog-collection";
 import { getProjectTags } from "@lib/project-collection";
 import Link from "@ui/Link.astro";
 import type { CollectionKey } from "astro:content";
+import TagsIcon from "@assets/icons/tags.svg";
 
 type Props = {
     collection: CollectionKey;
@@ -26,9 +27,12 @@ if (collection === "projects") {
 <div class="flex items-center">
     <ul class="flex flex-wrap items-center gap-4 md:gap-2">
         <li>
+            <TagsIcon size={30} />
+        </li>
+        <li>
             <Link
-                variant="ghost"
-                class={`relative ${collection === subpath && "text-primary-foreground"} `}
+                variant="link"
+                class={`relative ${collection === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                 href={`/${collection}`}
             >
                 All
@@ -48,12 +52,11 @@ if (collection === "projects") {
             tags.map((tag) => (
                 <li>
                     <Link
-                        variant="ghost"
-                        class={`relative ${tag.tag === subpath && "text-primary-foreground"} `}
+                        variant="link"
+                        class={`relative ${tag.tag === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                         href={`/${collection}/tag/${tag.tag}`}
                     >
-                        {tag.tag}
-
+                        #{tag.tag}
                         {tag.tag === subpath && (
                             // If the current path match the name of the tag, then render the link bg
                             <div

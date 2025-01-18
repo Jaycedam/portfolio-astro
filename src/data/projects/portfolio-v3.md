@@ -4,7 +4,7 @@ category: "Website"
 description: "Here we go again, but this time with Astro and View Transitions."
 date: "2024-03"
 featured: true
-tags: ["Astro", "TailwindCSS"]
+tags: ["astro", "tailwindcss"]
 image: "@assets/projects/portfolio-v3/preview.webp"
 ---
 

@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import FilterByTag from "@components/FilterByTag.astro";
 import Link from "@ui/Link.astro";
 import BlogCard from "@components/BlogCard.astro";
+import ArrowRightIcon from "@assets/icons/arrow-right.svg";
 
 const { homepage, title, filter } = Astro.props;
 
@@ -26,24 +27,36 @@ if (filter) {
 }
 ---
 
-<section id="blog" class="space-y-8">
-    <h1 class={homepage ? "heading" : "title"}>
-        {title}
-        {filter && <span class="text-xl text-muted-foreground">{filter}</span>}
-    </h1>
+<section id="blog" class="space-y-12">
+    {homepage ? <h2>{title}</h2> : <h1 class="text-center">{title}</h1>}
 
     {!homepage && <FilterByTag collection="blog" />}
 
     <ol class="grid gap-16 md:grid-cols-2">
-        {data.map((item) => <BlogCard item={item} />)}
+        {
+            data.map((item) => (
+                <li>
+                    <BlogCard item={item} />
+                </li>
+            ))
+        }
     </ol>
 
     <!--if this component is rendered on the homepage, then render the link to all projects-->
     {
         homepage && (
             <div class="grid justify-end">
-                <Link variant="outline" size="lg" href="/blog">
-                    All posts
+                <Link
+                    variant="outline"
+                    class="group space-x-2"
+                    href="/blog"
+                    size="lg"
+                >
+                    <span>See more</span>
+                    <ArrowRightIcon
+                        class="transition-transform group-hover:translate-x-2"
+                        size={18}
+                    />
                 </Link>
             </div>
         )
