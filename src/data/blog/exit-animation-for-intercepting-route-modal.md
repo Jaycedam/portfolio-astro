@@ -102,7 +102,7 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
 Now when pressing the close button or the ESC key, the modal will exit with an animation then go back to the previous URL.
 
-<video class="w-full rounded-md aspect-[16/10]" autoPlay muted loop controls>
+<video class="w-full rounded-md aspect-16/10" autoPlay muted loop controls>
   <source src="/blog/intercepting-modal.webm" type="video/webm" />
   Your browser does not support the video tag.
 </video>
