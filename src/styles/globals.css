@@ -204,10 +204,10 @@ p {
 
 /*Shiki theme override*/
 .astro-code {
-    background: rgb(39, 39, 42);
-    background: radial-gradient(
-        circle,
-        rgb(24, 24, 27, 1) 100%,
-        rgb(9, 9, 11, 1) 0%
+    background: rgb(9, 9, 11);
+    background: linear-gradient(
+        45deg,
+        rgba(9, 9, 11, 1) 0%,
+        rgba(24, 24, 27, 1) 100%
     );
 }

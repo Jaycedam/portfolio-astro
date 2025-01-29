@@ -10,7 +10,7 @@ export default defineConfig({
     adapter: vercel(),
     markdown: {
         shikiConfig: {
-            theme: "dracula",
+            theme: "catppuccin-mocha",
             // Enable word wrap to prevent horizontal scrolling
             wrap: true,
             transformers: [transformerNotationDiff()],
