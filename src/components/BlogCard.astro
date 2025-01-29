@@ -1,8 +1,6 @@
 ---
 import type { Blog } from "@lib/types";
 import FormattedDate from "@components/FormattedDate.astro";
-import placeholder from "@assets/blog/placeholder.webp";
-import { Image } from "astro:assets";
 import ArrowRightIcon from "@assets/icons/arrow-right.svg";
 
 type Props = {
@@ -30,19 +28,6 @@ const { item } = Astro.props;
         </a>
     </h3>
 
-    <a
-        class="aspect-video overflow-hidden rounded-xl"
-        href={`/blog/${item.id}`}
-    >
-        <Image
-            src={item.data.image ? item.data.image : placeholder}
-            alt=""
-            class="aspect-video w-full rounded-xl object-cover"
-            transition:name={"project-image" + item.id}
-            format="avif"
-        />
-    </a>
-    <!--<p>{item.data.category}</p>-->
     <p transition:name={"blog-desc-" + item.id}>
         {item.data.description}
     </p>

@@ -4,8 +4,6 @@ import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import Article from "@components/Article.astro";
 import Tags from "@components/Tags.astro";
-import placeholder from "@assets/blog/placeholder.webp";
-import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog");
@@ -45,7 +43,7 @@ const { Content } = await render(item);
             <h1 transition:name={"blog-title-" + item.id}>
                 {item.data.title}
             </h1>
-            <p>
+            <p transition:name={"blog-desc-" + item.id}>
                 {item.data.description}
             </p>
 
@@ -53,25 +51,6 @@ const { Content } = await render(item);
             <div class="grid justify-center">
                 <Tags tags={item.data.tags} type="blog" />
             </div>
-        </div>
-
-        <div
-            class="rounded-3xl bg-linear-to-tr from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900"
-        >
-            <Image
-                src={item.data.image ? item.data.image : placeholder}
-                alt=""
-                class="aspect-video w-full rounded-3xl object-cover"
-                transition:name={"project-image" + item.id}
-                loading="eager"
-                format="avif"
-                widths={[640, 768, 1024, 1500]}
-                sizes={`
-                    (max-width: 640px) 640px, 
-                    (max-width: 768px) 768px, 
-                    (max-width: 1024px) 1024px, 
-                    (max-width: 1280px) 1500px`}
-            />
         </div>
     </section>
 
